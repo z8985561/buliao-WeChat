@@ -1,0 +1,22 @@
+@import "../../common/city-picker.wxss";
+.fui-navbar{
+  height: 210rpx;
+  box-shadow:none;
+}
+.btn{
+  margin: 0.5rem 35rpx;
+  border-radius: 40rpx;
+}
+.btn.btn-danger{
+  background:linear-gradient(360deg,rgba(228,69,78,1) 0%,rgba(251,103,112,1) 100%);
+  border: none;
+}
+.btn.btn-default{
+  border-color: #999;
+  color: #999;
+  background-color: transparent;
+}
+.fui-cell-group .fui-cell .fui-cell-label{
+  color: #999;
+  width:200rpx;
+}

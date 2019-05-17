@@ -1,0 +1,29 @@
+<!--pages/order/pay/success.wxml-->
+<view class='tip-content'>
+  <image class='mb-10' src='http://buliao.cc/attachment/images/4/2019/05/J11c4FKKeWCCgjD9gCDcklkgdg3zM1.png'></image>
+  <view class='c9 fz-32 mb-10'>支付成功</view>
+  <view class='c3 fz-48 mb-60'>¥ {{payInfo.order.price}}</view>
+  <view class='flex flex-center'>
+    <navigator class='pay-btn index'>返回首页</navigator>
+    <navigator class='pay-btn order'>查看订单</navigator>
+  </view>
+</view>
+<!-- 猜你喜欢 -->
+<view class='p-20'>猜你喜欢</view>
+<view class='plr-20 flex flex-jus flex-wrap mb-40'>
+  <view class='like-item'>
+    <image src='http://buliao.cc/attachment/images/4/2019/05/dWQwA05cqP0CDAoaN5Lai7L77xioI5.png'></image>
+    <view class='fz-30 c3 text-hide'>CH07橡木CH07橡木</view>
+    <view class='text-danger text-hide'>¥148.00</view>
+  </view>
+  <view class='like-item'>
+    <image src='http://buliao.cc/attachment/images/4/2019/05/dWQwA05cqP0CDAoaN5Lai7L77xioI5.png'></image>
+    <view class='fz-30 c3 text-hide'>CH07橡木CH07橡木</view>
+    <view class='text-danger text-hide'>¥148.00</view>
+  </view>
+  <view class='like-item'>
+    <image src='http://buliao.cc/attachment/images/4/2019/05/dWQwA05cqP0CDAoaN5Lai7L77xioI5.png'></image>
+    <view class='fz-30 c3 text-hide'>CH07橡木CH07橡木</view>
+    <view class='text-danger text-hide'>¥148.00</view>
+  </view>
+</view>

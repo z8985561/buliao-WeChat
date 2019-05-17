@@ -1,0 +1,54 @@
+/* application/pages/poster/index.wxss */
+.page{
+  position: absolute;
+  top: 88rpx;
+  left: 0;
+  right: 0;
+  bottom: 100rpx;
+  min-height: auto;
+}
+.fui-header > view{
+  display: flex;
+  justify-content: center;
+  height: 88rpx;
+  width: 33.33%;
+}
+.fui-header view view{
+  height: 88rpx;
+  line-height: 84rpx;
+  box-sizing: border-box;
+  border-bottom: 2px solid transparent;
+}
+.fui-header view view.active{
+  color: red;
+  border-color: red;
+}
+.radio-group{
+  display: flex;
+  flex-wrap: wrap;
+}
+.radio-group radio{
+  display: none;
+}
+.radio-group .radio{
+  margin-right: 20rpx;
+  width: 20rpx;
+  height: 20rpx;
+  border: 1px solid red;
+  border-radius: 50%;
+}
+.radio-group .radio.on{
+  background-color: red;
+}
+.content .pic{
+  width: 630rpx;
+  height: 330rpx;
+}
+.content input{
+  padding-left: 20rpx;
+  background-color: rgb(234, 234, 234);
+}
+.content img{
+  width: 200px;
+  height: 200px;
+}

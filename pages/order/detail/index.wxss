@@ -1,0 +1,55 @@
+@import "/__wuBaseWxss__/2.wxss";
+.fui-footer{ display: flex;
+padding: 0 20rpx;
+justify-content: flex-end;align-items: center;
+box-shadow:0px 2rpx 10rpx 0px rgba(238,238,238,1);
+box-sizing: border-box;
+}
+.bg{ padding: 0;height: 200rpx;margin-top: 0; color: #fff;background-size: cover;}
+.row{ font-size: 30rpx; font-weight: bold; }
+.order-price{ font-size: 27rpx; color: #fff; line-height: 44rpx }
+.adress{ font-size: 27rpx; color: #666; }
+.order-info{ padding: 20rpx 0 }
+.order-info wx-view,.send-code{ padding: 6rpx 25rpx; color: #999; font-size: 28rpx; }
+.send-code.send-code1{ padding: 6rpx 10rpx; color: #666; font-size: 28rpx; }
+.price{ font-size: 30rpx; color: #999999; width: 260rpx; }
+.fui-list-inner .subtitle{ line-height: 40rpx }
+.send-code{display: none;}
+.fui-cell-group.toggleSend-group .send-code{display: block;font-size: 30rpx}
+.fui-cell-group.toggleSend-group .fui-cell .fui-cell-remark::after{ -webkit-transform:rotate(135deg); -ms-transform:rotate(135deg); transform:rotate(135deg); }
+.fui-list-media .image-48{ height: 48rpx; width: 48rpx }
+.text-padding{ padding:0 10rpx }
+.image-48{ margin: 8rpx 0 }
+.operate{ display: -webkit-flex; display: flex; }
+.operate wx-navigator{ -webkit-flex: 1; flex: 1 }
+.fui-cell-group .fui-cell .fui-cell-remark { color:#888; text-align:right; font-size:28rpx; margin-right:8rpx; }
+.fui-list-group{
+  margin: 0;
+  border-bottom: 20rpx solid #F8F8F8;
+}
+.fui-list-group:not(.fui-list-group-o):before { display: none;}
+.fui-list-group:not(.fui-list-group-o):after { display: none;}
+.fui-list:before{display: none;}
+.fui-list-group-title:before{display: none;}
+.fui-cell-group .fui-cell:before{display: none;}
+.fui-cell-group:not(.fui-cell-group-o):before { display: none;}
+.fui-cell-group:after { display: none;}
+.fui-cell-group .fui-cell .fui-cell-remark.noremark{
+  color: #333;
+}
+.btn{ margin:10rpx 0 10rpx 20rpx; padding: 10rpx 30rpx; height:50rpx; line-height: 30rpx; border-radius: 25rpx;font-size: 24rpx;}
+.btn.btn-default-o {
+  border-color:#999999;
+  color:#999;
+}
+.fui-list.goods-item{
+  margin: 0 20rpx;
+  padding:20rpx 0;
+  border-bottom: 1px solid #eee;
+}
+.fui-cell-group.price-cell-group{
+  padding-bottom: 10rpx;
+}
+.fui-cell-group.price-cell-group .fui-cell{
+  padding:10rpx 20rpx;
+}

@@ -1,0 +1,35 @@
+<!--pages/member/invitation/invitation.wxml-->
+<view class='fui-header'>
+  <view class='nav-list'>
+    <block wx:for="{{nav}}" wx:key="index">
+      <view bindtap='changeNav' class=' {{index == active ? "active":""}}' data-type='{{item.type}}' data-index='{{index}}'>{{item.name}}</view>
+    </block>
+  </view>
+</view>
+<view class='page header'>
+  <block wx:for="{{list}}" wx:key="index">
+    <view class='invite-user plr-20 ptb-30 flex flex-jus flex-align-center'>
+      <view class='flex flex-align-center'>
+        <image src='{{item.avatarUrl}}'></image>
+        <view class='ml-20 fz-28 c6'>{{item.nickName}}</view>
+      </view>
+      <view class='c9 fz-22'>{{item.time}}</view>
+    </view>
+  </block>
+  <block wx:if="{{more && list.length}}">
+    <view class='text-center fz-30 c9 p-20' bindtap='getList'>
+      加载跟多>>>
+    </view>
+  </block>
+  <block wx:if="{{!more && list.length}}">
+    <view class='text-center fz-30 c9 p-20'>
+      暂无更多数据
+    </view>
+  </block>
+  <block wx:if="{{list.length == 0}}">
+    <view class='kongkong'>
+      <image src='http://buliao.cc/attachment/images/4/2019/05/a2b4Ibyz72z9M8ppLz967VdPBRz4V7.png'></image>
+      <view class='fz-30 c9'>空空如也，快去邀请好友吧</view>
+    </view>
+  </block>
+</view>

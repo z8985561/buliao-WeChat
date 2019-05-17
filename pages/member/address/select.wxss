@@ -1,0 +1,18 @@
+.fui-list-inner { border-right: 1px solid #eee; }
+.fui-list-angle { margin-right: 0; }
+.fui-list-angle wx-image { margin-left: 20rpx; }
+.fui-navbar .nav-item.btn{
+  display: block;
+  margin: 10rpx auto 0;
+  width:710rpx;
+  height:80rpx;
+  background:linear-gradient(360deg,rgba(228,69,78,1) 0%,rgba(251,103,112,1) 100%);
+  border-radius:40rpx;
+  border:none;
+}
+.address-item{
+  padding:30rpx 0;
+}
+.fui-list-group { margin: 0; }
+.fui-list-group:not(.fui-list-group-o):before { display: none;}
+.fui-list-group:not(.fui-list-group-o):after { content: " "; position: absolute; left: 20rpx; bottom: 0; width: 710prx; height: 0; border-top: 2rpx solid #eee; color: #eee; -webkit-transform-origin: 0 100%; transform-origin: 0 100%; -webkit-transform: scaleY(0.5); transform: scaleY(0.5); }

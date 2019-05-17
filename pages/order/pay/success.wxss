@@ -1,0 +1,39 @@
+/* pages/order/pay/success.wxss */
+.tip-content{
+  padding-top: 80rpx;
+  height: 720rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 20rpx solid #F8F8F8;
+}
+.tip-content image{
+  width: 312rpx;
+  height: 312rpx;
+}
+.pay-btn{
+  width: 310rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 1px solid transparent;
+  border-radius: 40rpx;
+  box-sizing: border-box;
+  text-align: center;
+  border-color: #E4454E;
+}
+.pay-btn.index{  
+  color: #E4454E;
+}
+.pay-btn.order{
+  margin-left: 30rpx;
+  background:linear-gradient(360deg,rgba(228,69,78,1) 0%,rgba(254,110,92,1) 100%);
+  color: #fff;
+}
+.like-item{
+  width: 225rpx;
+}
+.like-item image{
+  width: 225rpx;
+  height: 225rpx;
+}

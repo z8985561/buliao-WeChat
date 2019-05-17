@@ -1,0 +1,14 @@
+<!--pages/shop/caregory/sub-cate.wxml-->
+<view class='plr-30'>
+  <view>
+    <view class='fz-48 c3 mb-20'>仿麻面料</view>
+    <navigator url='' hover-class='none'>
+      <image class='goods-pic mb-20' mode='widthFix' src="http://img2.y01.cn/images/4/2019/05/xC498z44XzO4Bfzm4LuRQOh4qB4LMq.png"></image>
+      <view class='flex flex-jus flex-align-center mb-10 plr-20'>
+        <view class='fz-40 c3'>精细罗纹</view>
+        <view class='label fz-30'>新品</view>
+      </view>
+      <view class='fz-30 c3 ml-40'>¥30.00/米</view>
+    </navigator>
+  </view>
+</view>

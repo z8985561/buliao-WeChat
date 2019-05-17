@@ -1,0 +1,38 @@
+<!--pages/contact/contact.wxml-->
+<swiper class='contact-swiper' bindchange="swiperChange">
+<block wx:for="{{list}}" wx:key="index">
+  <swiper-item class="item">
+    <view style="background-image: url({{item.bgUrl}});">
+    </view>
+  </swiper-item>
+</block>
+</swiper>
+<view class='business'>
+  <view class='info'>
+    <image src='{{list[active].logo}}'></image>
+    <view>
+      <view class='c3 fz-38 fw-700'>{{list[active].name}}</view>
+      <view class='fz-26 c6'>主营：{{list[active].business}}</view>
+    </view>
+  </view>
+  <view class='content fz-24 c9'>{{list[active].content}}</view>
+  <view class='menu'>
+    <view catchtap='callPhone' data-phone="{{list[active].phone}}">
+      <image src='http://img2.y01.cn/images/4/2019/05/xb3yV3Vdg4tdYc3VrVG3VNV4gZC49D.png'></image>
+      <view class='fz-24 c3'>电话</view>
+    </view>
+    <view>
+      <image catchtap='previewImage' data-imgurl='{{list[active].wechatGroup}}' src='http://img2.y01.cn/images/4/2019/05/GGGpL7L6s12vV4G220kSHsT00P92hh.png'></image>
+      <view class='fz-24 c3'>微信</view>
+    </view>
+    <view>
+      <image catchtap='previewImage' data-imgurl='{{list[active].account}}' src='http://img2.y01.cn/images/4/2019/05/H37CapJRfzvFFZaFM8zjP5bp007bpP.png'></image>
+      <view class='fz-24 c3'>账户</view>
+    </view>
+    <view>
+      <image catchtap='showAddress' data-latitude='{{list[active].latitude}}' data-longitude='{{list[active].longitude}}'  src='http://img2.y01.cn/images/4/2019/05/a4K62xQkC5A7TxZx9T668HH88lUB6C.png'></image>
+      <view class='fz-24 c3'>地址</view>
+    </view>
+  </view>
+</view>
+<include src='/pages/common/menu.wxml' />

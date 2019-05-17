@@ -1,0 +1,13 @@
+/* pages/shop/caregory/sub-cate.wxss */
+page{
+  background-color: #fff;
+}
+.goods-pic{
+  width: 100%;
+}
+.label{
+  color: #D6382E;
+  padding: 10rpx 30rpx;
+  border: 1px solid #D6382E;
+  border-radius: 34rpx;
+}

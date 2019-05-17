@@ -1,0 +1,15 @@
+/* application/pages/poster/change-img/change-img.wxss */
+.cloth-pic{
+  width: 330rpx;
+}
+.cloth-pic image{
+  width: 330rpx;
+  height: 330rpx;
+  border-radius: 20rpx;
+}
+.festival-pic{
+  width: 50%;
+}
+.festival-pic image{
+  width: 100%;
+}
