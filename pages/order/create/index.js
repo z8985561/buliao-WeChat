@@ -2,7 +2,7 @@ var t = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? func
   return typeof t;
 } : function (t) {
   return t && "function" == typeof Symbol && t.constructor === Symbol && t !== Symbol.prototype ? "symbol" : typeof t;
-}, e = getApp(), a = e.requirejs("core"), i = e.requirejs("foxui"), s = e.requirejs("biz/diyform"), r = e.requirejs("jquery"), d = e.requirejs("biz/selectdate");
+  }, e = getApp(), a = e.requirejs("core"), ee = e.requirejs("core"),i = e.requirejs("foxui"), s = e.requirejs("biz/diyform"), r = e.requirejs("jquery"), d = e.requirejs("biz/selectdate");
 
 Page({
   data: {
@@ -188,14 +188,37 @@ Page({
   },
   number: function (t) {
     var e = this, s = a.pdata(t), d = i.number(this, t), o = s.id, c = e.data.list, n = 0, l = 0, goodslist={};
+    var that = this
     e.setData({
       coupon: '',
       "data.couponname": null,
     })
+
+    console.log(t, e)
     r.each(c.goods, function (t, e) {
+      console.log(c.goods)
       r.each(e.goods, function (e, a) {
-        a.id == o && (c.goods[t].goods[e].total = d), n += parseInt(c.goods[t].goods[e].total),
-          l += parseFloat(n * c.goods[t].goods[e].price);
+        if (d < c.goods[t].goods[e].bigGoods){
+          if (c.goods[t].goods[e].price != c.goods[t].goods[e].price1){
+            c.goods[t].goods[e].price = c.goods[t].goods[e].price1
+            that.setData({
+              c
+            })
+          }
+          a.id == o && (c.goods[t].goods[e].total = d), n += parseInt(c.goods[t].goods[e].total),
+            l += parseFloat(n * c.goods[t].goods[e].price);
+        } else {
+          if (c.goods[t].goods[e].price == c.goods[t].goods[e].price1) {
+            c.goods[t].goods[e].price = (c.goods[t].goods[e].price * 0.01 * c.goods[t].goods[e].bigPrice)
+            that.setData({
+              c
+            })
+          }
+          
+          a.id == o && (c.goods[t].goods[e].total = d), n += parseInt(c.goods[t].goods[e].total),
+            l += parseFloat(n * c.goods[t].goods[e].price);
+        }
+        
       });
     }), c.total = n, c.goodsprice = r.toFixed(l, 2), goodslist=e.getGoodsList(c.goods),e.setData({
       list: c,
@@ -212,7 +235,7 @@ Page({
   },
   caculate: function (t) {
     var e = this;
-      a.post("order/create/caculate", {
+    a.post("order/create/caculate", {
       goods: this.data.goodslist,
       dflag: this.data.data.dispatchtype,
       total: this.data.list.total,
@@ -220,6 +243,7 @@ Page({
       packageid: this.data.list.packageid,
       bargain_id: this.data.bargainid
     }, function (a) {
+      console.log(a)
       t.dispatch_price = a.price, t.enoughdeduct = a.deductenough_money, t.enoughmoney = a.deductenough_enough,
         t.taskdiscountprice = a.taskdiscountprice, t.discountprice = a.discountprice, t.isdiscountprice = a.isdiscountprice,
         t.seckill_price = a.seckill_price, e.data.data.deduct && (a.realprice -= a.deductcredit),
@@ -231,7 +255,7 @@ Page({
     }, !0);
   },
   submit: function () {
-    var t = this.data, e = this, i = this.data.diyform, d = t.giftid;
+    var t = this.data, e = this, i = this.data.diyform, d = t.giftid,that = this;
     console.log(t);
     console.log(d);
     console.log(e);
@@ -278,9 +302,10 @@ Page({
       }), a.post("order/create/submit", o, function (t) {
         e.setData({
           submit: !1
+          //  that.get_list(t.orderid)
         }), 0 == t.error ? wx.redirectTo({
           url: "/pages/order/pay/index?id=" + t.orderid
-        }) : a.alert(t.message);
+        })  : a.alert(t.message);
       }, !0);
     }
   },
@@ -499,5 +524,108 @@ Page({
       activeS,
       'list.carrierInfo': this.data.storeList[activeS]
     })
+  },
+
+
+
+  get_list: function (id) {
+    var t = this;
+    console.log(t.data.options);
+    ee.get("order/pay", {'id':id}, function (i) {
+      console.log(i)
+      if (i.error != 0) {
+        wx.showModal({
+          title: '提示',
+          content: i.message,
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: "/pages/order/index"
+              });
+            } else if (res.cancel) {
+              wx.navigateTo({
+                url: "/pages/order/index"
+              });
+            }
+          }
+        })
+      }
+
+      if (50018 == i.error)
+        return void wx.navigateTo({
+          url: "/pages/order/detail/index?id=" + t.data.options.id
+        });
+      !i.wechat.success && "0.00" != i.order.price && i.wechat.payinfo && e.alert(i.wechat.payinfo.message + "\n不能使用微信支付!"),
+        t.setData({
+        paylist: i,
+          show: !0
+        })
+    })
+
+    wx.showModal({
+      title: '提示',
+      content: "是否进行微信支付?",
+      success: function (res) {
+        if (res.confirm) {
+          t.pay(id)
+        } else if (res.cancel) {
+         return
+        }
+      }
+    })
+  },
+  pay: function (id) {
+    var i = "wechat",
+      o = this,
+      a = this.data.paylist.wechat,
+      orderid = o.data.orderid;
+      console.log(id)
+    ee.get('order/pay/check', { id: id }, function (result) {
+      if (result.error != 0) {
+        wx.showModal({
+          title: '提示',
+          content: result.message,
+          success: function (res) {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: "/pages/order/index"
+              });
+            } else if (res.cancel) {
+              wx.navigateTo({
+                url: "/pages/order/index"
+              });
+            }
+          }
+        })
+      } else {
+        "wechat" == i ? ee.pay(a.payinfo, function (t) {
+          console.log(id)
+          "requestPayment:ok" == t.errMsg && o.complete(i,id)
+        }) : "credit" == i ? ee.confirm("确认要支付吗?", function () {
+          o.complete(i,id)
+        }, function () { }) : "cash" == i ? ee.confirm("确认要使用货到付款吗?", function () {
+          o.complete(i,id)
+        }, function () { }) : o.complete(i,id)
+      }
+    });
+
+  },
+  complete: function (t,id) {
+    var o = this
+    console.log(id)
+    ee.post("order/pay/complete", {
+      id: id,
+      type: "wechat"
+    }, function (t) {
+      if (0 == t.error)
+        return wx.setNavigationBarTitle({
+          title: "支付成功"
+        }), void o.setData({
+          success: !0,
+          show_share: t.show_share,
+          successData: t
+        });
+      i.toast(o, t.message)
+    }, !0, !0)
   }
 });

@@ -53,13 +53,13 @@
             </block>/米</text>
             </view>
             <view class="fz-28 c6 ml-20">大货：
-              <text class='text-danger'>￥<block wx:if="{{goods.ispresell>0&&(preselltimeend==0||preselltimeend>goods.thistime)}}">{{goods.presellprice}}</block>
+              <text class='text-danger'>￥<block wx:if="{{goods.ispresell>0&&(preselltimeend==0||preselltimeend>goods.thistime)}}">{{goods.presellprice * 0.01 * goods.bigPrice}}</block>
             <block wx:elif="{{goods.isprepay>0}}">
-              {{goods.prepayprice}}
+              {{goods.presellprice * 0.01 * goods.bigPrice}}
             </block>
             <block wx:else>
-              <block wx:if="{{goods.maxprice==goods.minprice}}">{{goods.marketprice}}</block>
-              <block wx:else>{{goods.minprice}}~{{goods.maxprice}}</block>
+              <block wx:if="{{goods.maxprice==goods.minprice}}">{{goods.marketprice * 0.01 * goods.bigPrice}}</block>
+              <block wx:else>{{goods.minprice * goods.bigPrice * 0.01}}~{{goods.maxprice * goods.bigPrice* 0.01}}</block>
             </block>/米</text>
             </view>
           </view>
@@ -91,7 +91,7 @@
           <view class="fui-cell">
             <view class="fui-cell-label" style='width:300rpx;padding:0;'>
               <view class='fz-30 c3'>购买数量</view>
-              <view class='fz-24' style='color:#EF9096;'>*超过100米则定价为大货价</view>
+              <view class='fz-24' style='color:#EF9096;'>*超过{{goods.bigGoods}}米则定价为大货价</view>
             </view>
             <view class="fui-cell-info"></view>
             <view class="fui-cell-mask noremark">

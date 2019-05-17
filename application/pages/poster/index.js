@@ -9,11 +9,12 @@ Page({
   data: {
     index:0,
     active: 0,
+    poster2Type:"festival",
     morningFigure: {
       time: "morning",
       template: "1",
       img: "",
-      text: ["1111111111", "222222222", "3333333333", "444444444", "5555555555"]
+      text: ["1111111111", "22222222222", "买面料送设计", "长按图片,保存或识别", "好布营销系统"]
     },
     festivalFigure:{
       festival:"festival",
@@ -307,9 +308,11 @@ Page({
     var type = e.detail.value;
     var festivalType = this.data.festivalType;
     festivalType = this.filtrate(festivalType, type);
+    console.log(type,festivalType)
     this.setData({
       festivalType,
       index:0,
+      poster2Type: type,
       ["festivalFigure.festival"]: type
     })
   },
@@ -343,13 +346,15 @@ Page({
     })
   },
   // 生成图片
-  generateImage() {
-    if (this.data.active == 0) {
-      core.get("url", this.data.morningFigure, res => {
-        if (res.error == 0) {
 
+  generateImage(){
+    console.log(this.data.morningFigure)
+    if(this.data.active == 0){
+      core.get("poster/poster/getPoster", { "data": this.data.morningFigure},res=>{
+        if (res.error == 0){
+          this.previewImage(res.img)
+          console.log(res.img)
         }
-        this.previewImage("http://img2.y01.cn/images/4/2019/05/HirV1L499exirEILPs94xEe93n2NrX.png")
       })
     }
   },
@@ -388,6 +393,10 @@ Page({
       wx.navigateTo({
         url: `./change-img/change-img?type=${type}&id=${id}`
       })
+    } else if (type == "solarTerms") {
+      wx.navigateTo({
+        url: `./change-img/change-img?type=${type}&id=${id}`
+      })
     }
     
   },
@@ -419,7 +428,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var that = this;
+    that.getPosterTpl();
+    that.getPosterText();
   },
 
   /**
@@ -455,5 +466,24 @@ Page({
    */
   onShareAppMessage: function() {
 
-  }
+  },
+
+  getPosterTpl:function(){
+    var that = this
+    core.get("poster/poster/getPosterTpl",{},res=>{
+      that.setData({
+        template:res.list
+      })
+      console.log(res)
+    })
+  },
+  getPosterText: function () {
+    var that = this
+    core.get("poster/poster/getPosterText", {}, res => {
+      that.setData({
+        text: res.text,
+        textList:res.list
+      })
+    })
+  },
 })

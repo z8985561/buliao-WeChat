@@ -360,6 +360,7 @@ Page({
         a.setData({
           goods: t.goods,
           thumbsList: t.goods.thumbs,
+          colorCard:t.colorCard
         })
       }
       wxparse.wxParse("wxParseData", "html", t.goods.content, a, "5"),
@@ -1057,8 +1058,8 @@ userinfo: function (options) {
   // 预览色卡图片
   showColorCard(){
     wx.previewImage({
-      current: 'http://img2.y01.cn/images/4/2019/05/dWQwA05cqP0CDAoaN5Lai7L77xioI5.png', // 当前显示图片的http链接
-      urls: ["http://img2.y01.cn/images/4/2019/05/dWQwA05cqP0CDAoaN5Lai7L77xioI5.png"] // 需要预览的图片http链接列表
+      current: this.data.colorCard, // 当前显示图片的http链接
+      urls: [this.data.colorCard] // 需要预览的图片http链接列表
     })
   },
   //输入色号

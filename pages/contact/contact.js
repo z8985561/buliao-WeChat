@@ -61,10 +61,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    core.get("url",{},res=>{
+    core.get("merch/getList",{},res=>{
+      console.log(res)
       if(res.error == 0){
         this.setData({
-          list:res.data.list
+          list:res.list
         })
       }else{
         core.alert(res.msg||"请求出错啦！！");

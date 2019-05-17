@@ -58,6 +58,8 @@ Page({
 		o = this,
 		a = this.data.list.wechat,
     orderid = o.data.options.id;
+
+    console.log(t)
     e.get('order/pay/check', { id: orderid }, function (result) {
       if (result.error != 0) {
         wx.showModal({
@@ -196,7 +198,6 @@ Page({
             }
           })
         }else{
-          func
         }
     });
   }

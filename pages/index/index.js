@@ -234,6 +234,7 @@ Page({
       }
     });
     that.get_danmu();
+    that.getCategory1();
   },
   get_danmu: function() {
     var t = this;
@@ -456,5 +457,12 @@ Page({
   getIndex: function(t, e) {
     return s.getIndex(t, e);
   },
-
+  getCategory1: function(){
+    var that = this;
+    a.get("diypage/buliao/getCategory1",{},res=>{
+      that.setData({
+        categoryList:res.list
+      })
+    })
+  }
 })

@@ -129,11 +129,12 @@
           </view>
           <view>
             <text class="text-danger fz-30" style="text-decoration:{{list.isdiscountprice>0?'line-through':''}}">¥{{val.price}}</text>
+            <!-- (val.total >= val.bigGoods) ? (val.price * val.bigPrice * 0.01) :  -->
           </view>
         </view>
         <view class="fui-list-angle">
           <view class="fui-cell text-danger" wx:if="{{list.isdiscountprice>0}}">￥{{val.promotionprice}}</view>
-          <view bindtap="number" class="fui-number small" data-id="{{val.id}}" data-index="{{index}}" data-key="{{key}}" data-max="{{val.totalmaxbuy}}" data-min="{{val.minbuy}}" data-value="{{val.total}}" wx:if="{{list.changenum&&list.iscycelbuy!=true&&bargainid<=0}}">
+          <view bindtap="number" class="fui-number small" data-id="{{val.id}}" data-index="{{index}}" data-key="{{key}}" data-max="{{val.totalmaxbuy}}" data-min="{{val.minbuy}}" data-bigGoods="{{val.bigGoods}}" data-bigPrice="{{val.bigPrice}}" data-value="{{val.total}}" wx:if="{{list.changenum&&list.iscycelbuy!=true&&bargainid<=0}}">
             <view class="minus {{val.total<=1?'disabled':''}}" data-action="minus">-</view>
             <input bindblur="inputNumber" class="num shownum" name="" type="tel" value="{{val.total}}"></input>
             <view class="plus {{val.total>=val.totalmaxbuy?'disabled':''}}" data-action="plus">+</view>

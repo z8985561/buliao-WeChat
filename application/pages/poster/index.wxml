@@ -21,6 +21,7 @@
       </label>
     </radio-group>
     <view class='fz-34 c3 mb-20'>选择模板</view>
+    <block wx:if="{{template}}">
     <radio-group class="radio-group" bindchange="templateChange">
       <label wx:for="{{template}}" wx:key="index" class='flex flex-align-center mr-40'>
         <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
@@ -28,6 +29,7 @@
         <view class='fz-30 c3'> {{item.text}}</view>
       </label>
     </radio-group>
+    </block>
     <view class='content'>
       <view class='pic flex flex-center flex-align-center flex-column' data-type="cloth" bindtap='toChangeImg'>
         <block wx:if="{{!morningFigure.img}}">
@@ -77,7 +79,7 @@
           <view class="picker">当前选择：{{festivalFigure.festival == 'festival' ? festivalList[index].name : solarTermsList[index].name}}</view>
         </picker>
       </view>
-      <view class='pic flex flex-center flex-align-center flex-column' data-type="festival" data-id='{{festivalFigure.id}}' bindtap='toChangeImg'>
+      <view class='pic flex flex-center flex-align-center flex-column' data-type="{{poster2Type}}" data-id='{{festivalFigure.id}}' bindtap='toChangeImg'>
         <block wx:if="{{!festivalFigure.img}}">
           <image src='/static/images/icon/upload.png'></image>
           <view class='fz-30 c9'>节日模板</view>

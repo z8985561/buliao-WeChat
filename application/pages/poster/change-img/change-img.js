@@ -40,56 +40,17 @@ Page({
       id
     } = options;
     this.setData({
-      type
+      type,
+      id
     })
-    if (this.data.type == "cloth") {
-      core.get("url", {
-        type
-      }, res => {
-        if (res.error == 0) {
-
-        }
-        var list = [{
-          url: "http://img2.y01.cn/images/4/2019/05/HirV1L499exirEILPs94xEe93n2NrX.png",
-          name: "1157",
-          id: 1,
-        },
-        {
-          url: "http://img2.y01.cn/images/4/2019/05/HirV1L499exirEILPs94xEe93n2NrX.png",
-          name: "2233"
-        },
-        {
-          url: "http://img2.y01.cn/images/4/2019/05/HirV1L499exirEILPs94xEe93n2NrX.png",
-          name: "14412"
-        }
-        ]
+    core.get("poster/poster/getPosterImg", { "type": this.data.type,"id":this.data.id},res=>{
+      console.log(res)
+      if(res.error == 0){
         this.setData({
-          list
+          list:res.list
         })
-      })
-    } else if (this.data.type == "festival") {
-      core.get("url", {
-        type,
-        id
-      }, res => {
-        if (res.error == 0) {
-
-        }
-        var list = [{
-          url: "http://img2.y01.cn/images/4/2019/05/BZGG7W4qXqg4Q16xZo4Mj6aN64JXGB.png"
-        },
-        {
-          url: "http://img2.y01.cn/images/4/2019/05/BZGG7W4qXqg4Q16xZo4Mj6aN64JXGB.png"
-        },
-        {
-          url: "http://img2.y01.cn/images/4/2019/05/BZGG7W4qXqg4Q16xZo4Mj6aN64JXGB.png"
-        }
-        ]
-        this.setData({
-          list
-        })
-      })
-    }
+      }
+    })
   },
 
   /**

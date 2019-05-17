@@ -130,7 +130,7 @@
               <text class='btn btn-danger-o {{editischecked?"":"disabled"}}' data-action='delete'>删除</text>
             </block>            
             <block wx:if='{{edit}}'>
-              <text class='btn btn-danger-o1 {{editischecked?"":"disabled"}}' data-action='move'>移动到关注</text>
+              <text class='btn btn-danger-o1 {{editischecked?"":"disabled"}}' data-action='move'>添加到关注</text>
             </block>
             <block wx:if='{{!edit}}'>
               <text class='btn btn-default-o' data-action='edit'>编辑</text>

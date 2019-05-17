@@ -63,6 +63,7 @@ Page({
           }, function (t) {
             s.get_cart();
           });
+          e.alert('添加成功');
           break;
 
         case "delete":
