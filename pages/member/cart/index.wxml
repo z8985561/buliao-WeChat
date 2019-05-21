@@ -40,7 +40,9 @@
               <view class='fui-list-angle'>
                 <view bindtap='number' data-id='{{val.id}}' class='fui-number small' data-max='{{val.totalmaxbuy}}' data-min='{{val.minbuy}}' data-optionid='{{val.optionid}}' data-value='{{val.total}}'>
                   <view data-action='minus' class='minus {{val.total <= 1?"disabled":""}}'>-</view>
-                  <input disabled name='' type='number' value='{{val.total}}' class='num shownum'></input>
+                  <view style='width: 70rpx;height:40rpx;border:1px solid rgba(221,221,221,1);overflow:hidden;'>
+                    <input disabled name='' type='number' value='{{val.total}}' class='num shownum'></input>
+                  </view>
                   <view data-action='plus' class='plus {{val.total >= val.totalmaxbuy?"disabled":""}}'>+</view>
                 </view>
               </view>
@@ -99,7 +101,7 @@
       </view>
     </block>
     <block wx:if='{{!empty}}'>
-      <view class='fui-footer' style='padding-bottom:100rpx;'>
+      <view class='fui-footer' style='padding-bottom:{{isIpx?"150":"100"}}rpx;'>
         <view class='tool'>
           <view class='check'>
             <block wx:if='{{!edit}}'>

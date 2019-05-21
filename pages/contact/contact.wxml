@@ -1,5 +1,5 @@
 <!--pages/contact/contact.wxml-->
-<swiper class='contact-swiper' bindchange="swiperChange">
+<swiper class='contact-swiper' bindchange="swiperChange" style='height:{{}}px'>
 <block wx:for="{{list}}" wx:key="index">
   <swiper-item class="item">
     <view style="background-image: url({{item.bgUrl}});">
@@ -7,10 +7,10 @@
   </swiper-item>
 </block>
 </swiper>
-<view class='business'>
+<view class='business' style='bottom:{{isIpx?"300":"200"}}rpx;'>
   <view class='info'>
     <image src='{{list[active].logo}}'></image>
-    <view>
+    <view style='flex:1;'>
       <view class='c3 fz-38 fw-700'>{{list[active].name}}</view>
       <view class='fz-26 c6'>主营：{{list[active].business}}</view>
     </view>

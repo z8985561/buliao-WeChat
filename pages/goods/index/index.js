@@ -51,6 +51,9 @@ t.requirejs("foxui"), Page({
   },
   onLoad: function (e) {
     var s = this;
+    this.setData({
+      isIpx: t.getCache("isIpx")
+    })
     if (setTimeout(function () {
       s.setData({
         areas: t.getCache("cacheset").areas

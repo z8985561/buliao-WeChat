@@ -37,15 +37,12 @@
 }
 
 .fui-number .num {
-    min-height:40rpx;
-    height: 40rpx;
-    line-height: 40rpx;
+    margin-top: -6rpx;
     width: 70rpx;
     color: #333;
     text-align: center;
     font-size: 32rpx;
     background:rgba(248,248,248,1);
-    border:1px solid rgba(221,221,221,1);
     font-weight: 500;
 }
 

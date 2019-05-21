@@ -1,6 +1,6 @@
 <view>
   <view style='height:100rpx;'></view>
-  <view class='fui-navbar'>
+  <view class='fui-navbar' style='height:{{isIpx?"150":"98"}}rpx;'>
     <navigator hoverClass='none' url='/pages/index/index' class='nav-item {{route != "home" || "active"}}' openType='redirect'>
       <image class='icon' src='{{route == "home"?icons.home_red:icons.home}}'></image>
       <text class='label'>首页</text>

@@ -22,9 +22,13 @@ Page({
         ["morningFigure.img"]: url,
         ["morningFigure.name"]: name
       })
-    } else if (this.data.type == "festival") {
+    } else if (this.data.type == "festival" || this.data.type=="solarTerms") {
       prevPage.setData({
         ["festivalFigure.img"]: url
+      })
+    } else if (this.data.type == "model"){
+      prevPage.setData({
+        ["modelFigure.img"]: url
       })
     }
     wx.navigateBack({

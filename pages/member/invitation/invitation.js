@@ -8,6 +8,7 @@ Page({
    */
   data: {
     active: 0,
+    approot: app.globalData.approot,
     more:true,
     nav: [{
       name: "全部",
@@ -22,25 +23,7 @@ Page({
     page:1,
     type:"all",
     pagesize:20,
-    list:[
-      {
-        avatarUrl:"/static/images/icon/kefu2.png",
-        nickName:"蝉鸣的夏季、",
-        time:"2018-11-23"
-      }, {
-        avatarUrl: "/static/images/icon/kefu2.png",
-        nickName: "蝉鸣的夏季、",
-        time: "2018-11-23"
-      }, {
-        avatarUrl: "/static/images/icon/kefu2.png",
-        nickName: "蝉鸣的夏季、",
-        time: "2018-11-23"
-      }, {
-        avatarUrl: "/static/images/icon/kefu2.png",
-        nickName: "蝉鸣的夏季、",
-        time: "2018-11-23"
-      }
-    ]
+    list:[]
   },
 
   /**
@@ -100,12 +83,13 @@ Page({
 
   },
   getList(){
-    core.get("url", {
+    core.get("commission/getMyunder", {
       type: this.data.type,
       page: this.data.page++,
       pagesize: this.data.pagesize
     }, res => {
       if (res.error == 0) {
+        console.log(res.list)
         var list = this.data.list.concat(res.list);
         this.setData({ list })
       } else {

@@ -28,7 +28,7 @@
   </block>
   <block wx:if="{{list.length == 0}}">
     <view class='kongkong'>
-      <image src='http://buliao.cc/attachment/images/4/2019/05/a2b4Ibyz72z9M8ppLz967VdPBRz4V7.png'></image>
+      <image src='{{approot}}plugin/app/static/images/buliao/under_null.png'></image>
       <view class='fz-30 c9'>空空如也，快去邀请好友吧</view>
     </view>
   </block>

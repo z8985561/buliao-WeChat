@@ -10,6 +10,9 @@ Page({
 		cancelindex : 0
 	},
 	onLoad : function (a) {
+    this.setData({
+      isIpx: t.getCache("isIpx")
+    })
 		this.setData({
 			options : a,
 			status : a.status || ""

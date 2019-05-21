@@ -57,8 +57,9 @@
               </block>
               <view class='fui-list list-padding text-right flex flex-end' style='border:none;'>
                 <view class='totle mb-10'>
-                  共<text class='text-danger'>{{item.goods.length}}</text>件商品 
-                  合计<text class='text-danger'>￥{{item.price}}</text>
+                  共
+                  <text class='text-danger'>{{item.goods.length}}</text>件商品 合计
+                  <text class='text-danger'>￥{{item.price}}</text>
                 </view>
               </view>
             </navigator>
@@ -102,11 +103,15 @@
                   <block wx:if='{{item.cancomplete}}'>
                     <view bindtap='finish' class='btn btn-danger' data-orderid='{{item.id}}'>确认收货</view>
                   </block>
-                  <block wx:if='{{item.canrefund}}'>
+                  <!-- <block wx:if='{{item.canrefund}}'>
                     <navigator style="display:inline;" class='btn btn-default' url='/pages/order/refund/index'>
                       <view class='btn btn-default btn-default-o'>{{item.refundtext}}</view>
                     </navigator>
-                  </block>
+                  </block> -->
+                  <!-- 申请退款 -->
+                  <navigator style="display:inline;" url='/pages/order/refund/index?id={{item.id}}'>
+                    <view class='btn btn-default btn-default-o'>申请退款</view>
+                  </navigator>
                   <block wx:if='{{item.cancancelrefund}}'>
                     <navigator class='btn btn-default-o btn-cancel'>取消申请 </navigator>
                   </block>

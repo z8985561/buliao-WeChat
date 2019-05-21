@@ -11,6 +11,9 @@ Page({
   },
   onLoad: function (e) {
     t.url(e);
+    this.setData({
+      isIpx: t.getCache("isIpx")
+    })
   },
   onShow: function () {
     this.get_cart();

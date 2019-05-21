@@ -638,6 +638,9 @@ Page({
     })
   },
   onLoad: function(options) {
+    this.setData({
+      isIpx: t.getCache("isIpx")
+    })
     var that = this;
     diypage.get(this, "goodsdetail", function(t) {
       var a = t.diypage.items;

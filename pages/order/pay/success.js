@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    approot: app.globalData.approot,
     payInfo:{}
   },
 
@@ -14,11 +15,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let { id } = options;
-    core.post("/order/pay/complete",{id,type:"credit"},res=>{
+    console.log(options)
+    core.post("/order/pay/complete", { id: options.id, type: options.type},res=>{
       console.log(res)
       this.setData({ payInfo:res})
     })
+    this.getRandGoods()
   },
 
   /**
@@ -68,5 +70,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  getRandGoods: function () {
+    core.post("/goods/getRandGoods", {}, res => {
+      console.log(res)
+      this.setData({ 'list': res.list })
+    })
   }
 })

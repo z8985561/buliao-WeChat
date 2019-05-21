@@ -9,22 +9,44 @@ Page({
   data: {
     index:0,
     active: 0,
+    footerText: ["买面料送设计","长安图片，选择保存或者识别"],
     poster2Type:"festival",
     morningFigure: {
       time: "morning",
       template: "1",
       img: "",
-      text: ["1111111111", "22222222222", "买面料送设计", "长按图片,保存或识别", "好布营销系统"]
+      text: ["1111111111", "22222222222",""]
     },
     festivalFigure:{
       festival:"festival",
       fontColor:"white",
       logo:"default",
       img: "",
-      text: ["1111111111", "222222222"],
+      text: [],
       id:1
     },
+    modelFigure:{
+      time: "morning",
+      fontColor: "white",
+      logo: "default",
+      img: "",
+      text: ["1111111111", "22222222222", ""],
+      imgType:"model"
+    },
     timeBucket: [{
+      type: "morning",
+      text: "早安图",
+      checked: true
+    }, {
+      type: "afternoon",
+      text: "午安图",
+      checked: false
+    }, {
+      type: "night",
+      text: "晚安图",
+      checked: false
+    }],
+    timeBucket2: [{
       type: "morning",
       text: "早安图",
       checked: true
@@ -84,6 +106,15 @@ Page({
       text: "黑色",
       checked: false
     }],
+    fontColor2: [{
+      type: "white",
+      text: "白色",
+      checked: true
+    }, {
+      type: "black",
+      text: "黑色",
+      checked: false
+    }],
     logos:[{
       type: "default",
       text: "默认",
@@ -93,6 +124,24 @@ Page({
         text: "logo1",
         checked: false
     }],
+    logos2: [{
+      type: "default",
+      text: "默认",
+      checked: true
+    }, {
+      type: "logo1",
+      text: "logo1",
+      checked: false
+    }],
+    imgType: [{
+      type: "model",
+      text: "选择模版",
+      checked: true
+    }, {
+        type: "local",
+        text: "相册/手机拍照",
+        checked: false
+      } ],
     festivalList:[
       {
         id: 1,
@@ -284,6 +333,16 @@ Page({
       ["morningFigure.time"]: type
     })
   },
+  // 选择时间段2
+  timeBucketChange2(e) {
+    var type = e.detail.value;
+    var timeBucket2 = this.data.timeBucket2;
+    timeBucket2 = this.filtrate(timeBucket2, type)
+    this.setData({
+       timeBucket2,
+      ["modelFigure.time"]: type
+    })
+  },
   templateChange(e) {
     var type = e.detail.value;
     var template = this.data.template;
@@ -302,6 +361,17 @@ Page({
     text[index] = value;
     this.setData({
       ["morningFigure.text"]: text
+    })
+  },
+  modelFigureChange(e) {
+    var value = e.detail.value;
+    var {
+      index
+    } = e.currentTarget.dataset;
+    var text = this.data.morningFigure.text;
+    text[index] = value;
+    this.setData({
+      ["modelFigure.text"]: text
     })
   },
   festivalTypeChange(e){
@@ -325,6 +395,15 @@ Page({
       ["festivalFigure.fontColor"]: type
     })
   },
+  fontColorChange2(e) {
+    var type = e.detail.value;
+    var fontColor2 = this.data.fontColor2;
+    fontColor2 = this.filtrate(fontColor2, type);
+    this.setData({
+      fontColor2,
+      ["modelFigure.fontColor"]: type
+    })
+  },
   logosChange(e){
     var type = e.detail.value;
     var logos = this.data.logos;
@@ -332,6 +411,25 @@ Page({
     this.setData({
       logos,
       ["festivalFigure.logo"]: type
+    })
+  },
+  logosChange2(e) {
+    var type = e.detail.value;
+    var logos2 = this.data.logos2;
+    logos2 = this.filtrate(logos2, type);
+    this.setData({
+      logos2,
+      ["modelFigure.logo"]: type
+    })
+  },
+  //选择图片来源
+  imgTypeChange(e) {
+    var type = e.detail.value;
+    var imgType = this.data.imgType;
+    imgType = this.filtrate(imgType, type);
+    this.setData({
+      imgType,
+      ["modelFigure.imgType"]: type
     })
   },
   festivalFigureChange(e) {
@@ -350,8 +448,25 @@ Page({
   generateImage(){
     console.log(this.data.morningFigure)
     if(this.data.active == 0){
+      this.data.morningFigure.text = this.data.morningFigure.text.concat(this.data.footerText)
       core.get("poster/poster/getPoster", { "data": this.data.morningFigure},res=>{
         if (res.error == 0){
+          this.previewImage(res.img)
+          console.log(res.img)
+        }
+      })
+    } else if (this.data.active == 1){
+      this.data.festivalFigure.text = this.data.festivalFigure.text.concat(this.data.footerText)
+      core.get("poster/poster/getPoster", { "data": this.data.festivalFigure }, res => {
+        if (res.error == 0) {
+          this.previewImage(res.img)
+          console.log(res.img)
+        }
+      })
+    } else if (this.data.active == 2){
+      this.data.modelFigure.text = this.data.modelFigure.text.concat(this.data.footerText)
+      core.get("poster/poster/getPoster", { "data": this.data.modelFigure }, res => {
+        if (res.error == 0) {
           this.previewImage(res.img)
           console.log(res.img)
         }
@@ -397,6 +512,18 @@ Page({
       wx.navigateTo({
         url: `./change-img/change-img?type=${type}&id=${id}`
       })
+    } else if (type == "model"){
+      if (this.data.modelFigure.imgType =="local"){
+        core.upload(res=>{
+          this.setData({
+            "modelFigure.img":res.url
+          })
+        })
+        return;
+      }
+      wx.navigateTo({
+        url: `./change-img/change-img?type=${type}`
+      })
     }
     
   },
@@ -414,7 +541,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(app.getCache('isIpx'))
+    this.setData({
+      isIpx: app.getCache("isIpx")
+    })
   },
 
   /**
@@ -486,4 +615,11 @@ Page({
       })
     })
   },
+  // 修改底部文案
+  modFooterText(e){
+    let {index} = e.currentTarget.dataset;
+    let footerText = this.data.footerText;
+    footerText[index] = e.detail.value;
+    this.setData({ footerText })
+  }
 })

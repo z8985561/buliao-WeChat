@@ -25,6 +25,9 @@ Page({
     modelPhoneShow: 1,
   },
   onLoad: function(t) {
+    this.setData({
+      isIpx: e.getCache("isIpx")
+    })
     e.checkAccount();
     var a = this;
     e.url(t), wx.getSystemInfo({
@@ -279,4 +282,17 @@ Page({
       }
     })
   },
+  // 分享朋友圈的图片预览
+  shareImg(){
+    t.loading("生成中...")
+    t.get("poster/poster/getMemberPoster",{},res=>{
+      t.hideLoading()
+      if(res.error==0){
+        wx.previewImage({
+          current: res.img, 
+          urls: [res.img] 
+        })
+      }
+    })
+  }
 });

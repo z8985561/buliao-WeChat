@@ -193,8 +193,6 @@ Page({
       coupon: '',
       "data.couponname": null,
     })
-
-    console.log(t, e)
     r.each(c.goods, function (t, e) {
       console.log(c.goods)
       r.each(e.goods, function (e, a) {
@@ -233,6 +231,7 @@ Page({
     }, 1800)
      this.caculate(c);
   },
+  // 11111
   caculate: function (t) {
     var e = this;
     a.post("order/create/caculate", {
@@ -302,10 +301,11 @@ Page({
       }), a.post("order/create/submit", o, function (t) {
         e.setData({
           submit: !1
-          //  that.get_list(t.orderid)
-        }), 0 == t.error ? wx.redirectTo({
-          url: "/pages/order/pay/index?id=" + t.orderid
-        })  : a.alert(t.message);
+          //  
+          // wx.redirectTo({
+          //   url: "/pages/order/pay/index?id=" + t.orderid
+          // }) 
+        }), 0 == t.error ? that.get_list(t.orderid) : a.alert(t.message);
       }, !0);
     }
   },
@@ -613,19 +613,22 @@ Page({
   complete: function (t,id) {
     var o = this
     console.log(id)
-    ee.post("order/pay/complete", {
-      id: id,
-      type: "wechat"
-    }, function (t) {
-      if (0 == t.error)
-        return wx.setNavigationBarTitle({
-          title: "支付成功"
-        }), void o.setData({
-          success: !0,
-          show_share: t.show_share,
-          successData: t
-        });
-      i.toast(o, t.message)
-    }, !0, !0)
+    wx.reLaunch({
+      url: '/pages/order/pay/success?id=' + id + '&type=' + t,
+    })
+    // ee.post("order/pay/complete", {
+    //   id: id,
+    //   type: "wechat"
+    // }, function (t) {
+    //   if (0 == t.error)
+    //     return wx.setNavigationBarTitle({
+    //       title: "支付成功"
+    //     }), void o.setData({
+    //       success: !0,
+    //       show_share: t.show_share,
+    //       successData: t
+    //     });
+    //   i.toast(o, t.message)
+    // }, !0, !0)
   }
 });

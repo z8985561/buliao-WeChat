@@ -1,6 +1,7 @@
 var t = getApp(), e = t.requirejs("core"), a = (t.requirejs("icons"), t.requirejs("jquery"));
 Page({
 	data : {
+    isIpx:"",
 		route : "category",
 		category : {},
 		icons : t.requirejs("icons"),
@@ -58,6 +59,11 @@ Page({
 			})
 		})
 	},
+  onLoad:function(o){
+    this.setData({
+      isIpx: t.getCache("isIpx")
+    })
+  },
 	onShow : function () {
 		this.getCategory()
 	},

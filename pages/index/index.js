@@ -14,6 +14,7 @@ var t = getApp(),
 var share_count = 0;
 Page({
   data: {
+    isIpx:"",
     currentIndex: 0,
     approot: t.globalData.approot,
     route: "home",
@@ -169,6 +170,9 @@ Page({
       })
   },
   onLoad: function(options) {
+    this.setData({
+      isIpx: t.getCache("isIpx")
+    })
     options = options || {};
     var that = this;
     wx.getSetting({

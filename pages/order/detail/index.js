@@ -3,6 +3,7 @@ var t = getApp(),
   i = t.requirejs("biz/order");
 Page({
   data: {
+    approot: t.globalData.approot,
     code: !1,
     consume: !1,
     store: !1,
@@ -10,12 +11,12 @@ Page({
     cancelindex: 0,
     diyshow: {},
     status: {
-      success: "http://buliao.cc/attachment/images/4/2019/05/Q000H635X1oaG3W31Hhw31rg31QG7F.png", //交易成功
-      refund: "http://buliao.cc/attachment/images/4/2019/05/o02b00KDyDDZYA9Ssk7KuUxYS47d4x.png", //退款成功
-      close: "http://buliao.cc/attachment/images/4/2019/05/Mtdt50LZaRTu7DF0TuTHAa05wzzZdG.png", //关闭订单
-      delivered: "http://buliao.cc/attachment/images/4/2019/05/SJJraaR3Faxr4OZqwRLRZzZlaXWlAl.png", //已发货
-      pay: "http://buliao.cc/attachment/images/4/2019/05/hDBFhDJB1G4171BMzDH5Ub8HYHJ8j8.png", //等待付款
-      shipments: "http://buliao.cc/attachment/images/4/2019/05/kxt8aFFszB4xIxE2L465bg6n62FO11.png" //等待发货
+      success: t.globalData.approot + "plugin/app/static/images/buliao/bg_success.png", //交易成功
+      refund: t.globalData.approot + "plugin/app/static/images/buliao/bg_refund.png", //退款成功
+      close: t.globalData.approot + "plugin/app/static/images/buliao/bg_close.png", //关闭订单
+      delivered: t.globalData.approot + "plugin/app/static/images/buliao/bg_delivered.png", //已发货
+      pay: t.globalData.approot + "plugin/app/static/images/buliao/bg_pay.png", //等待付款
+      shipments: t.globalData.approot + "plugin/app/static/images/buliao/bg_shipments.png" //等待发货
     },
     statusBg: ""
   },
@@ -48,6 +49,11 @@ Page({
         case 3:
           statusBg = t.data.status.success
           break;
+      }
+      // 如果进入退款bg等于refund
+      if (t.data.order.refundstate == 1){
+        t.setData({ statusBg: t.data.status.refund})
+        return;
       }
       t.setData({ statusBg})
     })

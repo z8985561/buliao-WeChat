@@ -61,6 +61,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    this.setData({
+      isIpx: app.getCache("isIpx")
+    })
     core.get("merch/getList",{},res=>{
       console.log(res)
       if(res.error == 0){

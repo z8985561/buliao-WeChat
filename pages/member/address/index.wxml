@@ -57,14 +57,14 @@
     </block>
     <block wx:if='{{list.length < 1 && loaded}}'>
       <view class='fui-loading empty'>
-        <image style='width:248rpx;height:248rpx;' src='http://buliao.cc/attachment/images/4/2019/05/KRfrI2FcHfnnyLAYt9TnYolynFBffZ.png'></image>
+        <image style='width:248rpx;height:248rpx;' src='{{approot}}plugin/app/static/images/buliao/address_null.png'></image>
         <view class='c9 fz-30'>还没有地址，去添加地址吧</view>
       </view>
     </block>
     <view class='fui-toast {{FoxUIToast.show?"in":"out"}}'>
       <view class='text'>FoxUIToast.text</view>
     </view>
-    <view class='fui-navbar'>
+    <view class='fui-navbar' style='height:{{isIpx?"150":"98"}}rpx;'>
       <navigator hoverClass='none' class='nav-item btn btn-danger' url='/pages/member/address/post?type=member'>
         <text>添加收货地址</text>
       </navigator>

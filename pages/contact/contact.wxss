@@ -1,6 +1,6 @@
 /* pages/contact/contact.wxss */
 .contact-swiper{
-  height: 100vh;
+  height: calc( 100% - 50px );
   width: 100vw;
 }
 .contact-swiper .item{

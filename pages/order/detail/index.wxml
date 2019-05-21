@@ -34,11 +34,11 @@
         </block>
         <navigator class='fui-list' hoverClass='none'>
           <view class='fui-list-media'>
-            <image class='fui-list-icon' src='/static/images/icon/location.png'></image>
+            <image class='fui-list-icon' src='/static/images/location-red.png' style='width:50rpx;height:50rpx;'></image>
           </view>
           <view class='fui-list-inner'>
-            <view class=''>{{address.realname}} {{address.mobile}}</view>
-            <view class='text'>{{address.province + address.city + address.area + " " + address.address}}</view>
+            <view class='c3 fz-30'>{{address.realname}} {{address.mobile}}</view>
+            <view class='fz-28 c9'>{{address.province + address.city + address.area + " " + address.address}}</view>
           </view>
         </navigator>
       </view>
@@ -241,7 +241,7 @@
         </view>
       </block>
       <view class='fui-cell'>
-        <view class='fui-cell-label' style='width:auto;'>实付费(含运费)</view>
+        <view class='fui-cell-label' style='width:auto;color:#333;'>实付费(含运费)</view>
         <view class='fui-cell-info'></view>
         <view class='fui-cell-remark noremark'><text class='text-danger'><text style='font-size:32rpx'>¥ {{order.price}}</text></text>
         </view>
@@ -257,6 +257,7 @@
     </view>
     <view class='fui-cell-group'>
       <view class='order-info'>
+      <view class='title'>订单信息</view>
         <view class='fui-cell-label flex flex-jus'><text>订单编号</text><text class='fui-cell-label'>{{order.ordersn}}</text></view>
         <view class='fui-cell-label flex flex-jus'><text>创建时间</text><text class='fui-cell-label'>{{order.createtime}}</text></view>
         <block wx:if='{{order.paytime}}'>
@@ -307,7 +308,7 @@
           <view bindtap='finish' class='btn btn-default btn-default-o'>确认收货</view>
         </block>
         <block wx:if='{{order.canrefund}}'>
-          <navigator class='btn btn-default' url='/pages/order/refund/index?id={{order.id}}'>{{order.refundtext}}</navigator>
+          <navigator class='btn btn-default-o btn-cancel' url='/pages/order/refund/index?id={{order.id}}'>{{order.refundtext}}</navigator>
         </block>
         <block wx:if='{{order.cancancelrefund}}'>
           <view bindtap='refundcancel' class='btn btn-default-o btn-cancel'>取消申请</view>

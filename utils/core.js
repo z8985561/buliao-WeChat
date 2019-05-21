@@ -103,6 +103,8 @@ module.exports = {
     var e = this;
     wx.chooseImage({
       count:1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
       success: function (n) {
         e.loading("正在上传...");
         var o = e.getUrl("util/uploader/upload", {

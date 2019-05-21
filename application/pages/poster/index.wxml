@@ -10,73 +10,90 @@
     <view class='{{active == 2 ? "active":""}}' data-index="2" bindtap='changeEvent'>模特海报图</view>
   </view>
 </view>
-<view class='page p-30'>
+<view class='page p-20'>
   <view hidden='{{active != 0}}'>
-    <view class='fz-34 c3 mb-20'>选择时间段</view>
-    <radio-group class="radio-group mb-20" bindchange="timeBucketChange">
-      <label wx:for="{{timeBucket}}" wx:key="index" class='flex flex-align-center mr-40'>
-        <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
-        <view class='radio {{item.checked?"on":""}}'></view>
-        <view class='fz-30 c3'> {{item.text}}</view>
-      </label>
-    </radio-group>
-    <view class='fz-34 c3 mb-20'>选择模板</view>
-    <block wx:if="{{template}}">
-    <radio-group class="radio-group" bindchange="templateChange">
-      <label wx:for="{{template}}" wx:key="index" class='flex flex-align-center mr-40'>
-        <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
-        <view class='radio {{item.checked?"on":""}}'></view>
-        <view class='fz-30 c3'> {{item.text}}</view>
-      </label>
-    </radio-group>
-    </block>
+    <view class='choose-list'>
+      <view class='fz-34 c3 mb-20'>选择时间段</view>
+      <radio-group class="radio-group mb-10" bindchange="timeBucketChange">
+        <label wx:for="{{timeBucket}}" wx:key="index" class='flex flex-align-center mr-20'>
+          <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
+          <view class='fz-30 radio {{item.checked?"on":""}}'> {{item.text}}</view>
+        </label>
+      </radio-group>
+    </view>
+    <view class='choose-list'>
+      <view class='fz-34 c3 mb-20'>选择模板</view>
+      <block wx:if="{{template}}">
+        <radio-group class="radio-group mb-10" bindchange="templateChange">
+          <label wx:for="{{template}}" wx:key="index" class='flex flex-align-center mr-20'>
+            <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
+            <view class='fz-30 radio {{item.checked?"on":""}}'> {{item.text}}</view>
+          </label>
+        </radio-group>
+      </block>
+    </view>
     <view class='content'>
       <view class='pic flex flex-center flex-align-center flex-column' data-type="cloth" bindtap='toChangeImg'>
         <block wx:if="{{!morningFigure.img}}">
           <image src='/static/images/icon/upload.png'></image>
           <view class='fz-30 c9'>面料照片</view>
         </block>
-        <block else>
-          <image src='{{morningFigure.img}}'></image>
+        <block wx:if="{{morningFigure.img}}">
+          <image src='{{morningFigure.img}}' style='width:248rpx;' mode='widthFix'></image>
         </block>
       </view>
-      <view class='fz-24 mb-20' bindtap='randomText1'>随机生成文字</view>
+      <view class='bar'></view>
+      <view class='flex flex-jus flex-align-center mb-20'>
+        <view class='c3 fz-30'>海报文案</view>
+        <view class='fz-24 change-btn' bindtap='randomText1'>
+          <image src='/static/images/refresh.png' style='width:24rpx;margin-right:4rpx;' mode='widthFix'></image>
+          <text>换一换</text>
+        </view>
+      </view>
+      <view class='fz-22 mb-10' style='color:#EF9096;'>*可通过增加空格来调整文字位置，每一行的字数不可超过15个</view>
       <block wx:for="{{morningFigure.text}}" wx:key="index">
-        <input class='fz-30 c3 mb-20' maxlength="20" value='{{item}}' data-index="{{index}}" bindinput='morningFigureChange'></input>
+        <input class='fz-30 c3 mb-20' maxlength="15" value='{{item}}' data-index="{{index}}" bindinput='morningFigureChange' placeholder='请输入文案' placeholder-class='c9'></input>
       </block>
-      <view class='fz-22 c-red'>*可通过增加空格来调整文字位置，每一行的字数不可超过15个</view>
+      <view class='bar'></view>
+      <view class='mb-20 c3 fz-30'>底部文案</view>
+      <block wx:for="{{footerText}}" wx:key="index">
+        <input class='fz-30 c3 mb-20' maxlength="15" value='{{item}}' data-index="{{index}}" bindinput='modFooterText'></input>
+      </block>
     </view>
   </view>
   <view hidden='{{active != 1}}'>
-    <view class='fz-34 c3 mb-20'>选择类型</view>
-    <radio-group class="radio-group mb-20" bindchange="festivalTypeChange">
-      <label wx:for="{{festivalType}}" wx:key="index" class='flex flex-align-center mr-40'>
-        <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
-        <view class='radio {{item.checked?"on":""}}'></view>
-        <view class='fz-30 c3'> {{item.text}}</view>
-      </label>
-    </radio-group>
-    <view class='fz-34 c3 mb-20'>选择字体颜色</view>
-    <radio-group class="radio-group mb-20" bindchange="fontColorChange">
-      <label wx:for="{{fontColor}}" wx:key="index" class='flex flex-align-center mr-40'>
-        <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
-        <view class='radio {{item.checked?"on":""}}'></view>
-        <view class='fz-30 c3'> {{item.text}}</view>
-      </label>
-    </radio-group>
-    <view class='fz-34 c3 mb-20'>选择logo</view>
-    <radio-group class="radio-group" bindchange="logosChange">
-      <label wx:for="{{logos}}" wx:key="index" class='flex flex-align-center mr-40'>
-        <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
-        <view class='radio {{item.checked?"on":""}}'></view>
-        <view class='fz-30 c3'> {{item.text}}</view>
-      </label>
-    </radio-group>
+    <view class='choose-list'>
+      <view class='fz-34 c3 mb-20'>选择类型</view>
+      <radio-group class="radio-group mb-10" bindchange="festivalTypeChange">
+        <label wx:for="{{festivalType}}" wx:key="index" class='flex flex-align-center mr-20'>
+          <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
+          <view class='fz-30 radio {{item.checked?"on":""}}'> {{item.text}}</view>
+        </label>
+      </radio-group>
+    </view>
+    <view class='choose-list'>
+      <view class='fz-34 c3 mb-20'>选择字体颜色</view>
+      <radio-group class="radio-group mb-10" bindchange="fontColorChange">
+        <label wx:for="{{fontColor}}" wx:key="index" class='flex flex-align-center mr-20'>
+          <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
+          <view class='fz-30 radio {{item.checked?"on":""}}'> {{item.text}}</view>
+        </label>
+      </radio-group>
+    </view>
+    <view class='choose-list'>
+      <view class='fz-34 c3 mb-20'>选择logo</view>
+      <radio-group class="radio-group mb-10" bindchange="logosChange">
+        <label wx:for="{{logos}}" wx:key="index" class='flex flex-align-center mr-20'>
+          <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
+          <view class='fz-30 radio {{item.checked?"on":""}}'> {{item.text}}</view>
+        </label>
+      </radio-group>
+    </view>
     <view class='content'>
-      <view class="fz-30 c3">选择具体{{festivalFigure.festival == 'festival' ? "节日" : "节气"}}</view>
-      <view>
+      <view class='choose-list flex flex-jus mb-20' style='padding-bottom:25rpx;'>
+        <view class="fz-30 c3">选择具体{{festivalFigure.festival == 'festival' ? "节日" : "节气"}}</view>
         <picker bindchange="festivalListChange" value="{{index}}" range="{{festivalFigure.festival == 'festival' ? festivalList : solarTermsList}}" range-key="name">
-          <view class="picker">当前选择：{{festivalFigure.festival == 'festival' ? festivalList[index].name : solarTermsList[index].name}}</view>
+          <view class="picker fz-30 c3 remark">{{festivalFigure.festival == 'festival' ? festivalList[index].name : solarTermsList[index].name}}</view>
         </picker>
       </view>
       <view class='pic flex flex-center flex-align-center flex-column' data-type="{{poster2Type}}" data-id='{{festivalFigure.id}}' bindtap='toChangeImg'>
@@ -84,66 +101,84 @@
           <image src='/static/images/icon/upload.png'></image>
           <view class='fz-30 c9'>节日模板</view>
         </block>
-        <block else>
-          <image src='{{festivalFigure.img}}'></image>
+        <block wx:if="{{festivalFigure.img}}">
+          <image src='{{festivalFigure.img}}' style='width:248rpx;' mode='widthFix'></image>
         </block>
       </view>
-      <block wx:for="{{festivalFigure.text}}" wx:key="index">
-        <input class='fz-30 c3 mb-20' maxlength="20" value='{{item}}' data-index="{{index}}" bindinput='festivalFigureChange'></input>
+      <view class='bar'></view>
+      <view class='mb-20 c3 fz-30'>底部文案</view>
+      <block wx:for="{{footerText}}" wx:key="index">
+        <input class='fz-30 c3 mb-20' maxlength="20" value='{{item}}' data-index="{{index}}" bindinput='modFooterText'></input>
       </block>
     </view>
   </view>
   <view hidden='{{active != 2}}'>
-    <view class='fz-34 c3 mb-20'>选择时间段</view>
-    <radio-group class="radio-group mb-20" bindchange="timeBucketChange">
-      <label wx:for="{{timeBucket}}" wx:key="index" class='flex flex-align-center mr-40'>
-        <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
-        <view class='radio {{item.checked?"on":""}}'></view>
-        <view class='fz-30 c3'> {{item.text}}</view>
-      </label>
-    </radio-group>
-    <view class='fz-34 c3 mb-20'>选择字体颜色</view>
-    <radio-group class="radio-group mb-20" bindchange="fontColorChange">
-      <label wx:for="{{fontColor}}" wx:key="index" class='flex flex-align-center mr-40'>
-        <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
-        <view class='radio {{item.checked?"on":""}}'></view>
-        <view class='fz-30 c3'> {{item.text}}</view>
-      </label>
-    </radio-group>
-    <view class='fz-34 c3 mb-20'>选择logo</view>
-    <radio-group class="radio-group mb-20" bindchange="logosChange" data-type="">
-      <label wx:for="{{logos}}" wx:key="index" class='flex flex-align-center mr-40'>
-        <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
-        <view class='radio {{item.checked?"on":""}}'></view>
-        <view class='fz-30 c3'> {{item.text}}</view>
-      </label>
-    </radio-group>
-    <view class='fz-34 c3 mb-20'>选择图片方式</view>
-    <radio-group class="radio-group" bindchange="logosChange">
-      <label wx:for="{{logos}}" wx:key="index" class='flex flex-align-center mr-40'>
-        <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
-        <view class='radio {{item.checked?"on":""}}'></view>
-        <view class='fz-30 c3'> {{item.text}}</view>
-      </label>
-    </radio-group>
+    <view class='choose-list'>
+      <view class='fz-34 c3 mb-20'>选择时间段</view>
+      <radio-group class="radio-group mb-10" bindchange="timeBucketChange2">
+        <label wx:for="{{timeBucket2}}" wx:key="index" class='flex flex-align-center mr-20'>
+          <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
+          <view class='fz-30 radio {{item.checked?"on":""}}'> {{item.text}}</view>
+        </label>
+      </radio-group>
+    </view>
+    <view class='choose-list'>
+      <view class='fz-34 c3 mb-20'>选择字体颜色</view>
+      <radio-group class="radio-group mb-10" bindchange="fontColorChange2">
+        <label wx:for="{{fontColor2}}" wx:key="index" class='flex flex-align-center mr-20'>
+          <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
+          <view class='fz-30 radio {{item.checked?"on":""}}'> {{item.text}}</view>
+        </label>
+      </radio-group>
+    </view>
+    <view class='choose-list'>
+      <view class='fz-34 c3 mb-20'>选择logo</view>
+      <radio-group class="radio-group mb-10" bindchange="logosChange2" data-type="">
+        <label wx:for="{{logos2}}" wx:key="index" class='flex flex-align-center mr-20'>
+          <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
+          <view class='fz-30 radio {{item.checked?"on":""}}'> {{item.text}}</view>
+        </label>
+      </radio-group>
+    </view>
+    <view class='choose-list'>
+      <view class='fz-34 c3 mb-20'>选择图片来源</view>
+      <radio-group class="radio-group mb-10" bindchange="imgTypeChange">
+        <label wx:for="{{imgType}}" wx:key="index" class='flex flex-align-center mr-20'>
+          <radio value="{{item.type}}" data-index="{{index}}" checked="{{item.checked}}" />
+          <view class='fz-30 radio {{item.checked?"on":""}}'> {{item.text}}</view>
+        </label>
+      </radio-group>
+    </view>
     <view class='content'>
-      <view class='pic flex flex-center flex-align-center flex-column' data-type="cloth" bindtap='toChangeImg'>
-        <block wx:if="{{!morningFigure.img}}">
+      <view class='pic flex flex-center flex-align-center flex-column' data-type="model" bindtap='toChangeImg'>
+        <block wx:if="{{!modelFigure.img}}">
           <image src='/static/images/icon/upload.png'></image>
           <view class='fz-30 c9'>面料照片</view>
         </block>
-        <block else>
-          <image src='{{morningFigure.img}}'></image>
+        <block wx:if="{{modelFigure.img}}">
+          <image src='{{modelFigure.img}}' style='width:248rpx;' mode='widthFix'></image>
         </block>
       </view>
-      <view class='fz-24 mb-20' bindtap='randomText1'>随机生成文字</view>
-      <block wx:for="{{morningFigure.text}}" wx:key="index">
-        <input class='fz-30 c3 mb-20' maxlength="20" value='{{item}}' data-index="{{index}}" bindinput='morningFigureChange'></input>
+      <view class='bar'></view>
+      <view class='flex flex-jus flex-align-center mb-20'>
+        <view class='c3 fz-30'>海报文案</view>
+        <view class='fz-24 change-btn' bindtap='randomText1'>
+          <image src='/static/images/refresh.png' style='width:24rpx;margin-right:4rpx;' mode='widthFix'></image>
+          <text>换一换</text>
+        </view>
+      </view>
+      <view class='fz-22 mb-10' style='color:#EF9096;'>*可通过增加空格来调整文字位置，每一行的字数不可超过15个</view>
+      <block wx:for="{{modelFigure.text}}" wx:key="index">
+        <input class='fz-30 c3 mb-20' maxlength="15" value='{{item}}' data-index="{{index}}" bindinput='modelFigureChange' placeholder='请输入文案' placeholder-class='c9'></input>
       </block>
-      <view class='fz-22 c-red'>*可通过增加空格来调整文字位置，每一行的字数不可超过15个</view>
+      <view class='bar'></view>
+      <view class='mb-20 c3 fz-30'>底部文案</view>
+      <block wx:for="{{footerText}}" wx:key="index">
+        <input class='fz-30 c3 mb-20' maxlength="15" value='{{item}}' data-index="{{index}}" bindinput='modFooterText'></input>
+      </block>
     </view>
   </view>
 </view>
-<view class='fui-footer'>
+<view class='fui-footer' style='height:{{isIpx?"150":"98"}}rpx;'>
   <view class='btn block btn-danger' bindtap="generateImage">生成图片</view>
 </view>

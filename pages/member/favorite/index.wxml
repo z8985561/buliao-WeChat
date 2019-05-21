@@ -32,8 +32,9 @@
       </view>
     </block>
     <block wx:if='{{total <= 0 && !loading}}'>
-      <view class='fui-loading empty'>
-        <view class='text'>没有数据</view>
+      <view class='fui-loading' style='padding-top:260rpx;'>
+        <image style='width:248rpx;height:248rpx;' src='http://buliao.cc/attachment/images/4/2019/05/f5ROMudM5COS1mvDCuRKvWocdDMQOd.png'></image>
+        <view class='fz-30 c9 text-center'>空空如也，快去收藏吧</view>
       </view>
     </block>
     <block wx:if='{{list.length > 0}}'>

@@ -3,10 +3,14 @@ var t = getApp(),
 Page({
   data: {
     loaded: !1,
-    list: []
+    list: [],
+    approot: t.globalData.approot,
   },
   onLoad: function(e) {
     t.url(e)
+    this.setData({
+      isIpx: t.getCache("isIpx")
+    })
   },
   onShow: function() {
     this.getList()

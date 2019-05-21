@@ -141,7 +141,7 @@
         <include src="/pages/common/diyform.wxml"></include>
       </view>
     </view>
-    <view class="fui-navbar {{iphonexnavbar}}" style='height:100rpx;'>
+    <view class="fui-navbar" style='height:{{isIpx?"150":"100"}}rpx;'>
       <block wx:if="{{pagepicker=='goodslist'}}">
         <a bindtap="getCart" class="nav-item btn cartbtn" href="">加入购物车</a>
         <a bindtap="buyNow" class="nav-item btn buybtn" href="">立刻购买</a>

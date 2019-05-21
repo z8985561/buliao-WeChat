@@ -1,5 +1,5 @@
 <view bindtap="hintclick" class="hint" wx:if="{{show&&!limits}}">您还未授权无法查看商品完整信息，点击可重新获取授权喔~</view>
-<view class='container'>
+<view class='container' style='padding-bottom:50rpx;'>
   <view class="goods-detail-goods" wx:if="{{showgoods}}">
     <view wx:if="{{usediypage!=false}}">
       <include src="/pages/diy/index.wxml"></include>
@@ -858,7 +858,7 @@
 
   <view class='fui-mask {{showPicker?"show":""}}' style='z-index: 1500'></view>
   <view style='height:100rpx;'></view>
-  <view class='fui-navbar bottom-buttons flex'>
+  <view class='fui-navbar bottom-buttons flex' style='height:{{isIpx?"150":"98"}}rpx;'>
     <block wx:if='{{1 || goods["customer"] != "1"}}'>
       <navigator wx:if="{{goods['merchid']>0}}" class='nav-item external' url='/pages/changce/merch/detail?id={{goods["merchid"]}}'>
         <view class='icon icon-shop'>
