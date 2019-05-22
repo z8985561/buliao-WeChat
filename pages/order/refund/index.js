@@ -15,7 +15,8 @@ Page({
   },
   onLoad: function(e) {
     this.setData({
-      options: e
+      options: e,
+      approot: t.globalData.approot
     }), t.url(e), this.get_list()
   },
   get_list: function() {

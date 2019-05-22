@@ -81,7 +81,7 @@
       </block>
     </block>
     <block wx:if='{{order.refundstate == 1}}'>
-      <view class='fui-title'>协商详情</view>
+      <view class='fui-title'>退款详情</view>
     </block>
     <view class='fui-cell-group'>
       <view class='fui-cell' hoverClass='none'>
@@ -138,8 +138,18 @@
           <view class='fui-cell-info'>{{refund.createtime}}</view>
         </view>
       </block>
+      <!-- <block wx:if='{{order.refundstate == 1}}'>
+        <view class='fui-cell'>
+          <view class='fui-cell-label'>申请凭证</view>
+          <view class='fui-cell-info'>
+          <block wx:for="{{refund.imgs}}" wx:key="index">
+            <image src='{{approot}}{{item}}'></image>
+          </block>
+          </view>
+        </view>
+      </block> -->
     </view>
-    <view class='fui-footer text-right'>
+    <view class='fui-footer text-right plr-20'>
       <block wx:if='{{order.refundstate == 0}}'>
         <view bindtap='submit' class='btn btn-danger btn-submit'>提交申请</view>
         <view bindtap='refundcancel' class='btn btn-default btn-default-o back'>取消申请</view>

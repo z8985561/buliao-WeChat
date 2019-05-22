@@ -12,7 +12,8 @@ Page({
   onLoad: function (e) {
     t.url(e);
     this.setData({
-      isIpx: t.getCache("isIpx")
+      isIpx: t.getCache("isIpx"),
+      approot: t.globalData.approot
     })
   },
   onShow: function () {

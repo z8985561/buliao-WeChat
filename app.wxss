@@ -1148,6 +1148,7 @@ padding:16rpx 20rpx;
     -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.1);
     -moz-box-shadow: 0 0 4px rgba(0,0,0,0.1);
     z-index: 999;
+    box-sizing: border-box;
 }
 
 .fui-navbar .nav-item.btn {

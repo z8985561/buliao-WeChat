@@ -11,7 +11,8 @@ Page({
 	},
 	onLoad : function (a) {
     this.setData({
-      isIpx: t.getCache("isIpx")
+      isIpx: t.getCache("isIpx"),
+      approot: t.globalData.approot
     })
 		this.setData({
 			options : a,

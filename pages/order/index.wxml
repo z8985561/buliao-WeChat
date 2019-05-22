@@ -109,9 +109,11 @@
                     </navigator>
                   </block> -->
                   <!-- 申请退款 -->
+                  <block wx:if="{{item.status!=0}}">
                   <navigator style="display:inline;" url='/pages/order/refund/index?id={{item.id}}'>
                     <view class='btn btn-default btn-default-o'>申请退款</view>
                   </navigator>
+                  </block>
                   <block wx:if='{{item.cancancelrefund}}'>
                     <navigator class='btn btn-default-o btn-cancel'>取消申请 </navigator>
                   </block>
@@ -129,9 +131,9 @@
     <block wx:if='{{list.length == 0 && empty}}'>
       <view class='center'>
         <view class='empty'>
-          <image class='light' src='/static/images/icon/lights-128.png'></image>
+          <image class='light' src='{{approot}}plugin/app/static/images/buliao/order-tip.png'></image>
           <view class='text-cancel'>暂时没有任何订单</view>
-          <navigator openType='redirect' url='/pages/index/index' class='btn btn-default-o'>到处逛逛</navigator>
+          <navigator openType='redirect' url='/pages/index/index' class='btn btn-danger'>到处逛逛</navigator>
         </view>
       </view>
     </block>

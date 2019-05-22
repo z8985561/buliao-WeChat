@@ -59,3 +59,15 @@ box-sizing: border-box;
   color: #333;
   border-bottom: 1px solid #eee;
 }
+.storename{
+  font-size: 30rpx;
+  color: #333;
+}
+.address{
+  font-size: 28rpx;
+  color: #999;
+}
+.store-inner{
+  margin-right: 10rpx;
+  border-right: 1px solid #eee;
+}

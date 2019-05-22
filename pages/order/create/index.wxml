@@ -81,7 +81,7 @@
         </navigator>
       </view> -->
     </block>
-    <view class="fui-cell-group" wx:if="{{!list.showAddress||data.dispatchtype==1}}">
+    <!-- <view class="fui-cell-group" wx:if="{{!list.showAddress||data.dispatchtype==1}}">
       <view class="fui-cell">
         <view class="fui-cell-label">姓名</view>
         <view class="fui-cell-info">
@@ -94,7 +94,7 @@
           <input bindinput="listChange" class="fui-input textl" id="mobile" placeholder="请输入电话" type="text" value="{{list.member.mobile}}"></input>
         </view>
       </view>
-    </view>
+    </view> -->
     <view class="fui-cell-group" wx:if="{{list.isforceverifystore==1&&list.isverify==1}}">
       <navigator class="fui-cell" hoverClass="none" openType="navigate" style="padding-top:16px;padding-bottom:16px" url="/pages/order/store/index?merchid={{merchid}}&ids={{list.storeids}}&type=2">
         <view class="fui-cell-icon" style="margin-right:24rpx">

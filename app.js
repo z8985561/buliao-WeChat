@@ -186,13 +186,12 @@ App({
     })
   },
   globalData: {
-      appid: "wx32b12b26bbfd1943",
-    // api: "http://www.w7.cc/app/ewei_shopv2_api.php?i=4",
-    // approot: "http://www.w7.cc/addons/ewei_shopv2/",
-    //   api: "http://www.weizan.com/app/ewei_shopv2_api.php?i=4",
-    //   approot: "http://www.weizan.com/addons/ewei_shopv2/",
-      api: "http://buliao.cc/app/ewei_shopv2_api.php?i=4",
-      approot: "http://buliao.cc/addons/ewei_shopv2/",
+      // appid: "wx32b12b26bbfd1943",
+      // api: "http://buliao.cc/app/ewei_shopv2_api.php?i=4",
+      // approot: "http://buliao.cc/addons/ewei_shopv2/",
+    appid: "wxb44500c576fdab14",
+    api: "https://buliao.kemanduo.cc/app/ewei_shopv2_api.php?i=150",
+    approot: "https://buliao.kemanduo.cc/addons/ewei_shopv2/",
     userInfo: "",
   }
 });

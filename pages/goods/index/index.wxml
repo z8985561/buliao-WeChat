@@ -42,7 +42,7 @@
     <view class="fui-header">
         <view class="searchbar">
             <icon size="18" type="search"></icon>
-            <input bindconfirm="bindSearch" bindfocus="bindFocus" bindinput="bindInput" focus="{{focusin}}" name="search" placeholder="输入关键字进行搜索" value="{{params.keywords}}"></input>
+            <input bindconfirm="bindSearch" bindfocus="bindFocus" bindinput="bindInput" focus="{{focusin}}" name="search" placeholder="输入关键字进行搜索" value="{{params.keywords}}" placeholder-class='c9'></input>
         </view>
         <text bindtap="changeMode" class="icon icox {{listmode==''?'icox-app':'icox-viewlist'}}" wx:if="{{!fromsearch}}"></text>
         <view bindtap="bindSearch" class="cancel" wx:if="{{fromsearch}}">搜索</view>

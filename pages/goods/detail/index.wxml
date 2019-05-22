@@ -886,7 +886,7 @@
         <view class='badge {{goods.cartount <= 0?"out":"in"}}'>{{goods.cartcount}}</view>
       </block>
       <view class='icon icon-cart'>
-        <image class='icon20' src='{{icons.cart}}'></image>
+        <image class='icon20' src='{{icons.cart1}}'></image>
       </view>
       <view class='label'>购物车</view>
     </navigator>
