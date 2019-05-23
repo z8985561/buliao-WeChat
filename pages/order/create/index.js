@@ -97,6 +97,7 @@ Page({
         });
       }
       1 == t.iscycel && i.show_cycelbuydate();
+      i.getprice(t)
     }), this.getQuickAddressDetail(), e.setCache("coupon", ""), setTimeout(function () {
       i.setData({
         areas: e.getCache("cacheset").areas
@@ -613,7 +614,7 @@ Page({
   complete: function (t,id) {
     var o = this
     console.log(id)
-    wx.reLaunch({
+    wx.navigateTo({
       url: '/pages/order/pay/success?id=' + id + '&type=' + t,
     })
     // ee.post("order/pay/complete", {
@@ -630,5 +631,36 @@ Page({
     //     });
     //   i.toast(o, t.message)
     // }, !0, !0)
+  },
+  getprice : function (t){
+    console.log(t)
+    var e = this,c = t, n = 0, l = 0, goodslist = {};
+    var that = this
+    r.each(c.goods, function (t, e) {
+      console.log(c.goods)
+      r.each(e.goods, function (e, a) {
+        console.log(a)
+        if (a.total < c.goods[t].goods[e].bigGoods){
+            n += parseInt(c.goods[t].goods[e].total),
+            l += parseFloat(n * c.goods[t].goods[e].price);
+        } else {
+          if (c.goods[t].goods[e].price == c.goods[t].goods[e].price1) {
+            c.goods[t].goods[e].price = (c.goods[t].goods[e].price * 0.01 * c.goods[t].goods[e].bigPrice)
+            that.setData({
+              c
+            })
+          }
+          
+            n += parseInt(c.goods[t].goods[e].total),
+            l += parseFloat(n * c.goods[t].goods[e].price);
+        }
+        
+      });
+    }), c.total = n, c.goodsprice = r.toFixed(l, 2), goodslist=e.getGoodsList(c.goods),e.setData({
+      list: c,
+      goodslist: goodslist
+      });
+
+    this.caculate(c);
   }
 });

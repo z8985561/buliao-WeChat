@@ -9,51 +9,7 @@ Page({
   data: {
     route:"contact",
     icons: app.requirejs("icons"),
-    list: [{
-      bgUrl: "http://img2.y01.cn/images/4/2019/05/rbZKKCJam7M99wCTJ7TX4bCJ8JJbT2.png",
-      logo: "http://img2.y01.cn/images/4/2019/05/VRL1iGiRRg34YORbINiWCQ844WR4z4.png",
-      name: "布料商城1",
-      business: "色丁、珍珠雪纺、皮绒、棉纶、仿麻", //主营
-      content: "品牌背书是指某一品牌要素以某种方式出现在包装、标号或者产品外观上，但不直接作为品牌名称的一部分。品牌是人们对一个企业及其产品、售后服务、文化价值的一种评价和认知，是一种信任。",
-      phone: "020-88881111",
-      wechatGroup: "http://img2.y01.cn/images/4/2019/05/LRfYR8Drf82U55OtF8F8or8OoyzRRz.jpg",
-      account: "http://img2.y01.cn/images/4/2019/05/LRfYR8Drf82U55OtF8F8or8OoyzRRz.jpg",
-      latitude: "23.1185452694",
-      longitude: "113.3218288422"
-    }, {
-      bgUrl: "http://img2.y01.cn/images/4/2019/05/rbZKKCJam7M99wCTJ7TX4bCJ8JJbT2.png",
-      logo: "http://img2.y01.cn/images/4/2019/05/VRL1iGiRRg34YORbINiWCQ844WR4z4.png",
-      name: "布料商城2",
-      business: "色丁、珍珠雪纺、皮绒、棉纶、仿麻", //主营
-      content: "品牌背书是指某一品牌要素以某种方式出现在包装、标号或者产品外观上，但不直接作为品牌名称的一部分。品牌是人们对一个企业及其产品、售后服务、文化价值的一种评价和认知，是一种信任。",
-      phone: "020-88882222",
-      wechatGroup: "http://img2.y01.cn/images/4/2019/05/LRfYR8Drf82U55OtF8F8or8OoyzRRz.jpg",
-      account: "http://img2.y01.cn/images/4/2019/05/LRfYR8Drf82U55OtF8F8or8OoyzRRz.jpg",
-      latitude: "23.1338090386",
-      longitude: "113.3392095566"
-    }, {
-      bgUrl: "http://img2.y01.cn/images/4/2019/05/rbZKKCJam7M99wCTJ7TX4bCJ8JJbT2.png",
-      logo: "http://img2.y01.cn/images/4/2019/05/VRL1iGiRRg34YORbINiWCQ844WR4z4.png",
-      name: "布料商城3",
-      business: "色丁、珍珠雪纺、皮绒、棉纶、仿麻", //主营
-      content: "品牌背书是指某一品牌要素以某种方式出现在包装、标号或者产品外观上，但不直接作为品牌名称的一部分。品牌是人们对一个企业及其产品、售后服务、文化价值的一种评价和认知，是一种信任。",
-      phone: "020-88883333",
-      wechatGroup: "http://img2.y01.cn/images/4/2019/05/LRfYR8Drf82U55OtF8F8or8OoyzRRz.jpg",
-      account: "http://img2.y01.cn/images/4/2019/05/LRfYR8Drf82U55OtF8F8or8OoyzRRz.jpg",
-      latitude: "23.1136600000",
-      longitude: "113.4270500000"
-    }, {
-      bgUrl: "http://img2.y01.cn/images/4/2019/05/rbZKKCJam7M99wCTJ7TX4bCJ8JJbT2.png",
-      logo: "http://img2.y01.cn/images/4/2019/05/VRL1iGiRRg34YORbINiWCQ844WR4z4.png",
-      name: "布料商城4",
-      business: "色丁、珍珠雪纺、皮绒、棉纶、仿麻", //主营
-      content: "品牌背书是指某一品牌要素以某种方式出现在包装、标号或者产品外观上，但不直接作为品牌名称的一部分。品牌是人们对一个企业及其产品、售后服务、文化价值的一种评价和认知，是一种信任。",
-      phone: "020-88884444",
-      wechatGroup: "http://img2.y01.cn/images/4/2019/05/LRfYR8Drf82U55OtF8F8or8OoyzRRz.jpg",
-      account: "http://img2.y01.cn/images/4/2019/05/LRfYR8Drf82U55OtF8F8or8OoyzRRz.jpg",
-      latitude: "23.1327582918",
-      longitude: "113.3302563429"
-    }, ],
+    list: [],
     active: 0
   },
 
@@ -94,12 +50,14 @@ Page({
   showAddress(e) {
     var {
       latitude,
-      longitude
+      longitude,
+      name
     } = e.currentTarget.dataset;
     console.log(latitude, longitude);
     wx.openLocation({
       latitude: parseFloat(latitude),
       longitude: parseFloat(longitude),
+      name: name,
       scale: 18
     })
   },

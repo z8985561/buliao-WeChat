@@ -1,5 +1,5 @@
 <view class="fui-modal goods-picker {{slider}} {{minpicker}} {{iphonexnavbar}}" wx:if="{{tempname=='select-picker'&&!cycledate}}">
-  <view class="option-picker">
+  <view class="option-picker" style='padding-bottom:{{isIpx?"150":"100"}}rpx;'>
     <view class="option-picker-inner">
       <view class="option-picker-cell goodinfo" wx:if="{{minpicker=='goodsdetail'}}">
         <view bindtap="emptyActive" class="closebtn">

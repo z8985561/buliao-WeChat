@@ -33,7 +33,7 @@
             </view>
         </view>
     </view> -->
-  <view class='member-head'>
+  <view class='member-head' style='background-image: url({{approot}}plugin/app/static/images/buliao/header.png);'>
     <image src="{{member.avatar||'/static/images/noface.png'}}" style='margin-top:-128rpx;'></image>
     <view style='margin-top:-128rpx;'>
       <view class='fz-34 cf'>{{member.nickname||'未更新用户信息'}}</view>
@@ -232,7 +232,7 @@
           <image src='/static/images/service.png'></image>
           <view class='fz-26 c9'>联系客服</view>
         </button>
-        <navigator url='' hover-class='none'>
+        <navigator url='/pages/shop/about/index' hover-class='none'>
           <image src='/static/images/regard.png'></image>
           <view class='fz-26 c9'>关于品牌</view>
         </navigator>

@@ -280,9 +280,11 @@ Page({
       maxbuy = parseInt(i.data.goods.maxbuy),
       total = parseInt(i.data.total),
       r = i.data.diyform;
-    console.log(r);
-    if (n > 0 && 0 == s)
-      return void a.toast(i, "请选择规格");
+    console.log(i.data.optionid);
+    if ( 0 == s){
+      e.toast("请选择规格","none");
+      return;
+    }
     if (maxbuy && total > maxbuy)
       return void a.toast(i, "超出最大限购数");
     if (r && r.fields.length > 0) {
@@ -1061,8 +1063,8 @@ userinfo: function (options) {
   // 预览色卡图片
   showColorCard(){
     wx.previewImage({
-      current: this.data.colorCard, // 当前显示图片的http链接
-      urls: [this.data.colorCard] // 需要预览的图片http链接列表
+      current: this.data.colorCard[0], // 当前显示图片的http链接
+      urls: this.data.colorCard // 需要预览的图片http链接列表
     })
   },
   //输入色号

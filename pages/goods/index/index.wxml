@@ -91,9 +91,9 @@
             <view>热门搜索</view>
         </view>
         <view hidden class="navs">
+            <!-- <nav bindtap="bindnav" data-text="推子">推子</nav>
             <nav bindtap="bindnav" data-text="推子">推子</nav>
-            <nav bindtap="bindnav" data-text="推子">推子</nav>
-            <nav bindtap="bindnav" data-text="推子">推子</nav>
+            <nav bindtap="bindnav" data-text="推子">推子</nav> -->
         </view>
     </view>
     <include src="/pages/common/goods-picker.wxml"></include>

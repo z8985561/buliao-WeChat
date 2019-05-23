@@ -12,12 +12,14 @@ Page({
     footerText: ["买面料送设计","长安图片，选择保存或者识别"],
     poster2Type:"festival",
     morningFigure: {
+      type:"cloth",
       time: "morning",
       template: "1",
       img: "",
-      text: ["1111111111", "22222222222",""]
+      text: ['','','']
     },
     festivalFigure:{
+      type: "festival",
       festival:"festival",
       fontColor:"white",
       logo:"default",
@@ -26,11 +28,12 @@ Page({
       id:1
     },
     modelFigure:{
+      type: "model",
       time: "morning",
       fontColor: "white",
       logo: "default",
       img: "",
-      text: ["1111111111", "22222222222", ""],
+      text: ['', '', ''],
       imgType:"model"
     },
     timeBucket: [{
@@ -63,31 +66,33 @@ Page({
       type: "1",
       text: "模板1",
       checked: true
-    }, {
-      type: "2",
-      text: "模板2",
-      checked: false
-    }, {
-      type: "3",
-      text: "模板3",
-      checked: false
-    }, {
-      type: "4",
-      text: "模板4",
-      checked: false
-    }, {
-      type: "5",
-      text: "模板5",
-      checked: false
-    }, {
-      type: "6",
-      text: "模板6",
-      checked: false
-    }, {
-      type: "7",
-      text: "模板7",
-      checked: false
-    }],
+    }, 
+    // {
+    //   type: "2",
+    //   text: "模板2",
+    //   checked: false
+    // }, {
+    //   type: "3",
+    //   text: "模板3",
+    //   checked: false
+    // }, {
+    //   type: "4",
+    //   text: "模板4",
+    //   checked: false
+    // }, {
+    //   type: "5",
+    //   text: "模板5",
+    //   checked: false
+    // }, {
+    //   type: "6",
+    //   text: "模板6",
+    //   checked: false
+    // }, {
+    //   type: "7",
+    //   text: "模板7",
+    //   checked: false
+    // }
+    ],
     festivalType: [{
       type: "festival",
       text: "节日",
@@ -119,20 +124,24 @@ Page({
       type: "default",
       text: "默认",
       checked: true
-    },{
-        type: "logo1",
-        text: "logo1",
-        checked: false
-    }],
+    },
+    // {
+    //     type: "logo1",
+    //     text: "logo1",
+    //     checked: false
+    // }
+    ],
     logos2: [{
       type: "default",
       text: "默认",
       checked: true
-    }, {
-      type: "logo1",
-      text: "logo1",
-      checked: false
-    }],
+    }, 
+    // {
+    //   type: "logo1",
+    //   text: "logo1",
+    //   checked: false
+    // }
+    ],
     imgType: [{
       type: "model",
       text: "选择模版",
@@ -448,6 +457,7 @@ Page({
   generateImage(){
     console.log(this.data.morningFigure)
     if(this.data.active == 0){
+      console.log(this.data.footerText)
       this.data.morningFigure.text = this.data.morningFigure.text.concat(this.data.footerText)
       core.get("poster/poster/getPoster", { "data": this.data.morningFigure},res=>{
         if (res.error == 0){
@@ -455,22 +465,26 @@ Page({
           console.log(res.img)
         }
       })
+      this.data.morningFigure.text.splice(2,2)
     } else if (this.data.active == 1){
-      this.data.festivalFigure.text = this.data.festivalFigure.text.concat(this.data.footerText)
+      this.data.festivalFigure.text[0] = this.data.footerText[0];
+      this.data.festivalFigure.text[1] = this.data.footerText[1];
       core.get("poster/poster/getPoster", { "data": this.data.festivalFigure }, res => {
         if (res.error == 0) {
           this.previewImage(res.img)
           console.log(res.img)
         }
       })
-    } else if (this.data.active == 2){
-      this.data.modelFigure.text = this.data.modelFigure.text.concat(this.data.footerText)
+    } else if(this.data.active ==2){
+      this.data.modelFigure.text[3] = this.data.footerText[0];
+      this.data.modelFigure.text[4] = this.data.footerText[1];
       core.get("poster/poster/getPoster", { "data": this.data.modelFigure }, res => {
         if (res.error == 0) {
           this.previewImage(res.img)
           console.log(res.img)
         }
       })
+      this.data.modelFigure.text.splice(3,2)
     }
   },
   festivalListChange(e) {
@@ -487,13 +501,25 @@ Page({
     })
   },
   // 随机获取文字
-  randomText1() {
-    var text = this.data.morningFigure.text;
-    text[0] = Math.ceil(Math.random() * 10e20);
-    text[1] = Math.ceil(Math.random() * 10e20);
-    this.setData({
-      ["morningFigure.text"]: text
-    })
+  randomText1(e) {
+    var text = this.data.morningFigure.text,
+        key = this.data.textList.length,
+        textList = this.data.textList,
+        type = e.currentTarget.dataset.type
+    console.log(e)
+    key = (Math.ceil(Math.random() * key)) - 1;
+    text[0] = textList[key]['text1'];
+    text[1] = textList[key]['text2'];
+    if(type == 0){
+      this.setData({
+        ["morningFigure.text"]: text
+      })
+    }else if(type==1){
+      text[2] = "";
+      this.setData({
+        ["modelFigure.text"]: text
+      })
+    }
   },
   toChangeImg(e) {
     var {
@@ -512,11 +538,11 @@ Page({
       wx.navigateTo({
         url: `./change-img/change-img?type=${type}&id=${id}`
       })
-    } else if (type == "model"){
-      if (this.data.modelFigure.imgType =="local"){
-        core.upload(res=>{
+    } else if (type == "model") {
+      if (this.data.modelFigure.imgType == "local") {
+        core.upload(res => {
           this.setData({
-            "modelFigure.img":res.url
+            "modelFigure.img": res.url
           })
         })
         return;
@@ -541,9 +567,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.setData({
-      isIpx: app.getCache("isIpx")
-    })
+    console.log(app.getCache('isIpx'))
+
+    var that = this;
+    that.getPosterTpl();
+    that.getPosterText();
   },
 
   /**
@@ -557,9 +585,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    var that = this;
-    that.getPosterTpl();
-    that.getPosterText();
   },
 
   /**
@@ -609,8 +634,17 @@ Page({
   getPosterText: function () {
     var that = this
     core.get("poster/poster/getPosterText", {}, res => {
+      console.log(res)
+      var text1 = [],text2 = [];
+      text1 = text1.concat(res.text[0]);
+      text1 = text1.concat(res.text[1]);
+      // text = text.concat(res.text[1])
+      text2 = text2.concat(res.text[0]);
+      text2 = text2.concat(res.text[1]);
+      text2 = text2.concat("");
       that.setData({
-        text: res.text,
+        ["morningFigure.text"]: text1,
+        ["modelFigure.text"]: text2,
         textList:res.list
       })
     })

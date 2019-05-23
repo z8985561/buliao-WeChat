@@ -18,3 +18,12 @@
     </block>
   </view>
 </block>
+<block wx:if="{{type == 'model'}}">
+  <view class='flex flex-wrap'>
+    <block wx:for="{{list}}" wx:key="index">
+      <view class='festival-pic' bindtap='changeImg' data-url="{{item.url}}" data-name="{{item.name}}" data-id='{{item.id}}'>
+        <image src='{{item.url}}' mode='widthFix'></image>
+      </view>
+    </block>
+  </view>
+</block>

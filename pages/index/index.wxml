@@ -13,29 +13,7 @@
     </swiper>
   </block>
 </block>
-<view style='margin:0 auto 15px;height:1px;width:710rpx;background:#eee;'></view>
-<view class='mb-20'>
-<view class='fz-48 mb-5 plr-20'>面料主题</view>
-<view class='fz-24 c9 mb-15 plr-20'>2019春/夏最新趋势面料</view>
-  <scroll-view scroll-x class='theme-list'>
-    <navigator url='#' hover-class='none'>
-      <image src='http://img2.y01.cn/images/4/2019/05/HirV1L499exirEILPs94xEe93n2NrX.png'></image>
-      <view class='fz-30 c3'>新品推荐</view>
-      <view class='fz-24 c9'>第一时间了解新品，快速尝新 </view>
-    </navigator>
-    <navigator url='#' hover-class='none'>
-      <image src='http://img2.y01.cn/images/4/2019/05/HirV1L499exirEILPs94xEe93n2NrX.png'></image>
-      <view class='fz-30 c3'>新品推荐</view>
-      <view class='fz-24 c9'>第一时间了解新品，快速尝新 </view>
-    </navigator>
-    <navigator url='#' hover-class='none'>
-      <image src='http://img2.y01.cn/images/4/2019/05/HirV1L499exirEILPs94xEe93n2NrX.png'></image>
-      <view class='fz-30 c3'>新品推荐</view>
-      <view class='fz-24 c9'>第一时间了解新品，快速尝新 </view>
-    </navigator>
-  </scroll-view>
-<view style='margin:0 auto 15px;height:1px;width:710rpx;background:#eee;'></view>
-</view>
+
 
 <!-- 定制UI部分 -->
 <view wx:if="{{!closestartadv && startadv && startadv.status==1}}" class="startadv">
@@ -83,7 +61,17 @@
       <include src='cube.wxml' />
     </block>
     <block wx:if="{{item.id == 'pictures'}}">
-      <include src='pictures.wxml' />
+      <!-- <include src='pictures.wxml' /> -->
+      
+      <scroll-view scroll-x class='theme-list'>
+        <block wx:for="{{item.data}}" wx:for-item="item2">
+          <navigator url='{{item2.linkurl}}' hover-class='none'>
+            <image src='{{item2.imgurl}}'></image>
+            <view class='fz-30 c3'>{{item2.title}}</view>
+            <view class='fz-24 c9'>{{item2.text}} </view>
+          </navigator>
+        </block>
+      </scroll-view>
     </block>
     <block wx:if="{{item.id == 'nav' || item.id == 'menu'}}">
       <include src='nav.wxml' />

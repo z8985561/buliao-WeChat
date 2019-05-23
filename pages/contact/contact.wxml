@@ -30,7 +30,7 @@
       <view class='fz-24 c3'>账户</view>
     </view>
     <view>
-      <image catchtap='showAddress' data-latitude='{{list[active].latitude}}' data-longitude='{{list[active].longitude}}'  src='http://img2.y01.cn/images/4/2019/05/a4K62xQkC5A7TxZx9T668HH88lUB6C.png'></image>
+      <image catchtap='showAddress' data-name="{{list[active].address}}" data-latitude='{{list[active].latitude}}' data-longitude='{{list[active].longitude}}'  src='http://img2.y01.cn/images/4/2019/05/a4K62xQkC5A7TxZx9T668HH88lUB6C.png'></image>
       <view class='fz-24 c3'>地址</view>
     </view>
   </view>

@@ -45,7 +45,7 @@
       <view class='bar'></view>
       <view class='flex flex-jus flex-align-center mb-20'>
         <view class='c3 fz-30'>海报文案</view>
-        <view class='fz-24 change-btn' bindtap='randomText1'>
+        <view class='fz-24 change-btn' bindtap='randomText1' data-type="{{active}}">
           <image src='/static/images/refresh.png' style='width:24rpx;margin-right:4rpx;' mode='widthFix'></image>
           <text>换一换</text>
         </view>
@@ -162,7 +162,7 @@
       <view class='bar'></view>
       <view class='flex flex-jus flex-align-center mb-20'>
         <view class='c3 fz-30'>海报文案</view>
-        <view class='fz-24 change-btn' bindtap='randomText1'>
+        <view class='fz-24 change-btn' bindtap='randomText1' data-type="1">
           <image src='/static/images/refresh.png' style='width:24rpx;margin-right:4rpx;' mode='widthFix'></image>
           <text>换一换</text>
         </view>

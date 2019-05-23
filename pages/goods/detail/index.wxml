@@ -90,17 +90,17 @@
       <view class='fui-cell'>
         <view class='fui-cell-info flex'>
           <view class="fz-28 c9">样布：
-            <text class='text-danger'>￥11.50/米</text>
+            <text class='text-danger'>￥{{goods.minprice}}-{{goods.maxprice}}/米</text>
           </view>
           <view class="fz-28 c9 ml-20">大货：
-            <text class='text-danger'>￥10.50/码</text>
+            <text class='text-danger'>￥{{goods.minprice*((goods.bigPrice/100)||1)}}-{{goods.maxprice*((goods.bigPrice/100)||1)}}/码</text>
           </view>
         </view>
       </view>
       <view class='fui-cell'>
         <view class='fui-cell-info flex'>
           <view class="fz-28 c9">折扣：
-            <text class='text-danger'>9.8折</text>
+            <text class='text-danger'>{{goods.bigPrice/10||10}}折</text>
           </view>
         </view>
       </view>
@@ -121,7 +121,7 @@
         </view>
         <view class='fui-cell-info flex flex-wrap'>
           <block wx:for="{{pickerOption.specs[0].items}}" wx:key="index">
-            <view wx:if="{{index <8}}" class='option-item {{index == isActive? "active":""}}' data-src='{{item.thumb}}' data-index="{{index}}" bindtap='chooseOption'>
+            <view wx:if="{{index <8 && item.thumb}}" class='option-item {{index == isActive? "active":""}}' data-src='{{item.thumb}}' data-index="{{index}}" bindtap='chooseOption'>
               <image src='{{item.thumb}}' lazy-load="true"></image>
             </view>
           </block>

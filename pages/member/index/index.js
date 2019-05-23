@@ -6,6 +6,7 @@ var e = getApp(),
 
 Page({
   data: {
+    approot: e.globalData.approot,
     route: "member",
     background: "",
     icons: e.requirejs("icons"),
